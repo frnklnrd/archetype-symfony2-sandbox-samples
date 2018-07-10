@@ -1,0 +1,154 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Publicacao
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Publicacao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data", type="date")
+     */
+    private $data;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tema", type="string", length=255)
+     */
+    private $tema;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nacional_internacional", type="string", length=255)
+     */
+    private $nacional_internacional;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacoes", type="text")
+     */
+    private $observacoes;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set data
+     *
+     * @param \DateTime $data
+     * @return Publicacao
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Get data
+     *
+     * @return \DateTime 
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Set tema
+     *
+     * @param string $tema
+     * @return Publicacao
+     */
+    public function setTema($tema)
+    {
+        $this->tema = $tema;
+
+        return $this;
+    }
+
+    /**
+     * Get tema
+     *
+     * @return string 
+     */
+    public function getTema()
+    {
+        return $this->tema;
+    }
+
+    /**
+     * Set nacional_internacional
+     *
+     * @param string $nacional_internacional
+     * @return Publicacao
+     */
+    public function setNacionalInternacional($nacional_internacional)
+    {
+        $this->nacional_internacional = $nacional_internacional;
+
+        return $this;
+    }
+
+    /**
+     * Get nacional_internacional
+     *
+     * @return string 
+     */
+    public function getNacionalInternacional()
+    {
+        return $this->$nacional_internacional;
+    }
+
+    /**
+     * Set observacoes
+     *
+     * @param string $observacoes
+     * @return Publicacao
+     */
+    public function setObservacoes($observacoes)
+    {
+        $this->observacoes = $observacoes;
+
+        return $this;
+    }
+
+    /**
+     * Get observacoes
+     *
+     * @return string 
+     */
+    public function getObservacoes()
+    {
+        return $this->observacoes;
+    }
+}

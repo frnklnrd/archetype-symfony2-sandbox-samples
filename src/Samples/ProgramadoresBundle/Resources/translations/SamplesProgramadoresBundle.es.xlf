@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="pt" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="admin.dashboard.programador.list">
+                <source>Programador List</source>
+                <target>Programadores</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.sistema_operativo.list">
+                <source>Sistema Operativo List</source>
+                <target>Sistemas Operativos</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.lenguaje_programacion.list">
+                <source>Lenguaje Programacion List</source>
+                <target>Lenguajes de Programación</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.proyecto.list">
+                <source>Proyecto List</source>
+                <target>Proyectos</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

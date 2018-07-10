@@ -1,0 +1,13 @@
+sonata_admin:
+    dashboard:
+        groups:
+            samples_escuela:
+                label: 'Escuela'
+                label_catalogue: SamplesEscuelaBundle
+                icon: '<i class="fa fa-book"></i>'
+                items:
+                    - samples.escuela.admin.persona
+                    - samples.escuela.admin.notas
+                    - samples.escuela.admin.asignatura
+                    - samples.escuela.admin.provincia
+                    - samples.escuela.admin.escuela

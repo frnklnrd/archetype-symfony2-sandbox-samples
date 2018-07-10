@@ -1,0 +1,59 @@
+samples_index:
+    resource: "@SamplesIndexBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+samples_programadores:
+    resource: "@SamplesProgramadoresBundle/Controller/"
+    type:     annotation
+    prefix:   /programadores
+
+samples_cibercafe:
+    resource: "@SamplesCibercafeBundle/Controller/"
+    type:     annotation
+    prefix:   /cibercafe
+
+samples_company:
+    resource: "@SamplesCompanyBundle/Controller/Frontend/"
+    type:     annotation
+    prefix:   /company
+    
+samples_escola:
+    resource: "@SamplesEscolaBundle/Controller/"
+    type:     annotation
+    prefix:   /escola
+
+#samples_avaliacao_desempenho:
+#    resource: "@SamplesAvaliacaoDesempenhoBundle/Controller/"
+#    type:     annotation
+#    prefix:   /avaliacao_desempenho
+
+#samples_escuela:
+#    resource: "@SamplesEscuelaBundle/Controller/"
+#    type:     annotation
+#    prefix:   /escuela
+
+#samples_propinas_estudiantis:
+#    resource: "@SamplesPropinasEstudiantisBundle/Controller/"
+#    type:     annotation
+#    prefix:   /propinas_estudiantis
+
+#samples_farmacia:
+#    resource: "@SamplesFarmaciaBundle/Controller/"
+#    type:     annotation
+#    prefix:   /farmacia
+
+#samples_producao_animal_vegetal:
+#    resource: "@SamplesProducaoAnimalVegetalBundle/Controller/"
+#    type:     annotation
+#    prefix:   /producao_animal_vegetal
+
+#samples_reparticao_municipal:
+#    resource: "@SamplesReparticaoMunicipalBundle/Controller/"
+#    type:     annotation
+#    prefix:   /reparticao_municipal
+
+#samples_stock_viveres:
+#    resource: "@SamplesStockViveresBundle/Controller/"
+#    type:     annotation
+#    prefix:   /stock_viveres

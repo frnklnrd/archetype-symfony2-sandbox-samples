@@ -1,0 +1,27 @@
+# related to app/config/sonata/sonata_admin.yml
+imports:
+    - { resource: 'parameters.yml'}
+    - { resource: 'security.yml'}
+
+sonata_admin:
+
+    dashboard:
+        groups:
+
+            admin:
+                label: admin.dashboard.menu.admin.label
+                label_catalogue: AppBundle
+                icon: '<i class="fa fa-list"></i>'
+                roles: [ ROLE_ADMIN ]
+                items:
+                #    - app.admin.entity
+
+            user:
+                label: admin.dashboard.menu.user.label
+                label_catalogue: AppBundle
+                icon: '<i class="fa fa-list-alt"></i>'
+                roles: [ ROLE_USER ]
+                items:
+                #    - app.admin.entity
+
+

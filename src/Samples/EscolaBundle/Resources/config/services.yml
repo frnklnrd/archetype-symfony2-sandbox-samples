@@ -1,0 +1,60 @@
+services:
+    samples.escola.admin.estudante:
+        class: Samples\EscolaBundle\Admin\EstudanteAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Estudante, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: 'Gerir Estudantes'}
+
+    samples.escola.admin.pesquisa:
+        class: Samples\EscolaBundle\Admin\PesquisaAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Pesquisa, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _, label: Pesquisa}
+
+    samples.escola.admin.tipo_pesquisa:
+        class: Samples\EscolaBundle\Admin\TipoPesquisaAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\TipoPesquisa, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Tipo de Pesquisa}
+
+    samples.escola.admin.evento:
+        class: Samples\EscolaBundle\Admin\EventoAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Evento, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Evento}
+
+    samples.escola.admin.curso:
+        class: Samples\EscolaBundle\Admin\CursoAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Curso, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Curso}
+
+    samples.escola.admin.turma:
+        class: Samples\EscolaBundle\Admin\TurmaAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Turma, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Turma}
+
+    samples.escola.admin.ano:
+        class: Samples\EscolaBundle\Admin\AnoAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Ano, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Ano}
+
+    samples.escola.admin.disciplina:
+        class: Samples\EscolaBundle\Admin\DisciplinaAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Disciplina, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Disciplina}
+
+    samples.escola.admin.provincia:
+        class: Samples\EscolaBundle\Admin\ProvinciaAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Provincia, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Provincia}
+
+    samples.escola.admin.municipio:
+        class: Samples\EscolaBundle\Admin\MunicipioAdmin
+        arguments: [~, Samples\EscolaBundle\Entity\Municipio, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Municipio}

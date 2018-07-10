@@ -1,0 +1,24 @@
+{%raw%}  
+    <table class="table table-bordered table-hover table-responsive table-condensed table-striped">
+        <caption>
+            <input type="button" ngclick="$ctrl.run()" value="run"><br>
+            <input type="button" ngclick="$ctrl.pagina()" value="next"><br>
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Website</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="company in $ctrl.companies">
+                <td>{{ company.name}}</td>
+                <td>{{ company.country | country}}</td>
+                <td>{{ company.website}}</td>
+                <td><a href="{{ company._links.self.href}}">Edit {{company.id}}</a></td>
+            </tr>
+        </tbody>
+    </table>     
+{%endraw%}

@@ -1,0 +1,95 @@
+<div id="flash-messages" style="margin-top:5px;">
+        {% block flash_messages %}
+            {% for notice_level in ['success','error','info', 'warning'] %}
+                {% for flash in app.session.flashbag.get(notice_level) %}
+
+        <div class="alert alert-{{ notice_level }}" style="margin-bottom: 5px;line-height: 15px;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ notice_level | upper() }}: </strong> {{ flash|trans([], 'SamplesCibercafeBundle') }}
+        </div>	
+                {% endfor %}
+            {% endfor %}
+        {% endblock %}
+    </div>
+
+    <form id="form-edit-usuario" class="form-horizontal" action="{{ path('crud_ajax_usuario_asociado_eventual_edit',{'id':entity.id}) }}" method="post" {{ form_enctype(edit_form) }}>
+        <div class="span4">    
+            <div class="control-group">
+                <label class="control-label" for="{{ edit_form.nombre.vars.id }}">{{ form_label(edit_form.nombre) }}</label>
+                <div class="controls">
+            {{ form_widget(edit_form.nombre) }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="{{ edit_form.apellidos.vars.id }}">{{ form_label(edit_form.apellidos) }}</label>
+                    <div class="controls">
+            {{ form_widget(edit_form.apellidos) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="{{ edit_form.num_PC_asignada.vars.id }}">{{ form_label(edit_form.num_PC_asignada) }}</label>
+                        <div class="controls">
+            {{ form_widget(edit_form.num_PC_asignada) }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="{{ edit_form.num_tarjeta_credito.vars.id }}">{{ form_label(edit_form.num_tarjeta_credito) }}</label>
+                            <div class="controls">
+            {{ form_widget(edit_form.num_tarjeta_credito) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div class="control-group">
+                                <label class="control-label" for="{{ edit_form.carnet_identidad.vars.id }}">{{ form_label(edit_form.carnet_identidad) }}</label>
+                                <div class="controls">
+            {{ form_widget(edit_form.carnet_identidad) }}
+                                    </div>
+                                </div>
+{% if tipo_usuario == "asociado"%}        
+                                <div class="control-group">
+                                    <label class="control-label" for="{{ edit_form.cant_annos.vars.id }}">{{ form_label(edit_form.cant_annos) }}</label>
+                                    <div class="controls">
+            {{ form_widget(edit_form.cant_annos) }}
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="{{ edit_form.categoria.vars.id }}">{{ form_label(edit_form.categoria) }}</label>
+                                        <div class="controls">
+            {{ form_widget(edit_form.categoria) }}
+                                            </div>
+                                        </div>
+{% endif %}
+                                        <div class="hide">
+         {{ form_widget(edit_form) }}
+                                                <input type="hidden" name="tipo_usuario" value="asociado"/>
+                                            </div> 
+                                        </div>
+                                        <div class="control-group span5 pull-right">
+                                            <div class="controls">
+                                                <button type="reset" class="btn btn-info">Limpiar</button>
+                                                <button type="button" class="btn btn-primary" id="btn-form-edit-save">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+        <script>
+        $(function(){
+    
+             $('#btn-form-edit-save').click(function(){ 
+     
+                   $('#ajax-loader-container').show();
+                   $.ajax({
+                           type: "POST",
+                           async: false,
+                           url: $('#form-edit-usuario').attr('action'),
+                           data: $('#form-edit-usuario').serialize()
+                         }).done(function( data ) {
+                             $('#ajax-loader-container').hide();
+                             $('#myModalEdit-body').html(data);
+                      });
+                   return true;
+             });
+             
+   });
+</script> 

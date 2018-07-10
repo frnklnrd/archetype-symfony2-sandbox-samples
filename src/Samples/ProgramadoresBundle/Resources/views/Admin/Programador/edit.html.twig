@@ -1,0 +1,64 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+
+$(function(){
+    
+    // validaciones
+
+    // permite solo numeros en campos de texto CI
+
+    $('#{{form.ci.vars.id}}').keypress(function(event)
+    {
+        var key = window.Event ? event.which : event.keyCode; // alert(key);
+		
+        return (key <= 13 || (key >= 37 && key <= 40) || (key >= 48 && key <= 57) || key == 46 );
+    });
+
+    // validando el formulario
+    
+    $('form').submit(function( event ) {
+
+        if (isNaN( $('#{{form.ci.vars.id}}').val() ) || $('#{{form.ci.vars.id}}').val().length!=11)
+        {
+            // evitar el submit del formulario
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            alert('El campo "{{form.ci.vars.label}}" debe estar formado por 11 números');
+
+            $('#{{form.ci.vars.id}}').focus();
+        }
+        
+        else if ( $('#{{form.sistema_operativo.vars.id}}').val()=="") // si no ha sido seleccionado
+        {
+            // evitar el submit del formulario
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            alert('El campo [{{form.sistema_operativo.vars.label}}] debe ser seleccionado');
+
+            $('#{{form.sistema_operativo.vars.id}}').focus();
+        }
+        
+        else if ( $('#{{form.lenguajes_programacion.vars.id}} input:checked').length<1) // si no se ha seleccionado ninguno
+        {
+            // evitar el submit del formulario
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            alert('El campo [{{form.lenguajes_programacion.vars.label}}] debe ser seleccionado');
+
+            $('#{{form.lenguajes_programacion.vars.id}}').focus();
+        }
+    });    
+
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Ejemplos CRUD{% endblock %}
+
+{% block content%}
+
+<div class="nav navbar-inner">
+    <h3 class="span4 pull-left">Datos del Programador</h3>
+    <form class="pull-right" style="margin-top: 15px" action="{{ path('samples_programadores_formularios_crud_programador_delete', { 'id': entity.id }) }}" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+        <button type="submit" class="btn btn-danger"><i class="icon-remove"></i> Eliminar</button>
+    </form>  
+    <a class="btn pull-right" style="margin-top: 15px; margin-right: 5px;" href="{{ path('samples_programadores_formularios_crud_programador_edit', { 'id': entity.id }) }}">
+        <i class="icon-edit"></i> Editar
+    </a>
+    <a  class="btn pull-right" style="margin-top: 15px; margin-right: 5px;" href="{{ path('samples_programadores_formularios_crud_programador') }}">
+        <i class="icon-arrow-left"></i> Volver
+    </a>      
+</div>
+
+<table class="table table-bordered table-hover table-striped">
+    <tbody>
+        <tr>
+            <th>Foto</th>
+            <td>
+                {% if entity.webPath %}
+
+                <a href="{{asset(entity.webPath)}}" class="highslide offset1" onclick="return hs.expand(this)" style="text-decoration: none;">
+                    <img class="img-polaroid" src="{{asset(entity.webPath)}}" alt="" title="" width="200px" height="200px"/>
+                </a>
+
+                {% else %}
+                    <img class="img-polaroid" src="{{asset('/bundles/samplesindex/img/no-foto.png')}}" alt="no foto"/>
+                {% endif %}                
+            </td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>        
+        <tr>
+            <th>Sexo</th>
+            <td>{{ entity.sexodescripcion }}</td>
+        </tr>
+        <tr>
+            <th>Certificado</th>
+            <td>{% if entity.certificado==1 %}Sí{% else%}No{% endif%}</td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+    <link href="{{asset('assets/highslide/highslide.css')}}" rel="stylesheet" />
+    <style>
+         .navbar-fixed-top, .navbar-fixed-bottom
+        {
+            z-index: 111;
+        }
+    </style>    
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{asset('assets/highslide/highslide.js')}}"></script>
+<script type="text/javascript">
+//<![CDATA[
+hs.registerOverlay({
+	html: '<div class="closebutton" onclick="return hs.close(this)" title="Close"></div>',
+	position: 'top right',
+	fade: 2 // fading the semi-transparent overlay looks bad in IE
+});
+
+hs.graphicsDir = '{{asset('assets/highslide/graphics/')}}';
+hs.wrapperClassName = 'borderless';
+//]]>
+</script>
+{% endblock %}

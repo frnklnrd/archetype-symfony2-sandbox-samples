@@ -1,0 +1,101 @@
+services:
+
+   samples.cibercafe.admin.categoria_usuario_asociado:
+     
+       class: Samples\CibercafeBundle\Admin\CategoriaUsuarioAsociadoAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Categorías de Clientes" }
+       arguments:
+           - ~
+           - Samples\CibercafeBundle\Entity\CategoriaUsuarioAsociado
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesCibercafeBundle]]
+
+   samples.cibercafe.admin.instalador:
+     
+       class: Samples\CibercafeBundle\Admin\InstaladorAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Instaladores Disponibles" }
+       arguments:
+           - ~
+           - Samples\CibercafeBundle\Entity\Instalador
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesCibercafeBundle]]
+
+   samples.cibercafe.admin.menu:
+     
+       class: Samples\CibercafeBundle\Admin\MenuAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Menú en Cafetería" }
+       arguments:
+           - ~
+           - Samples\CibercafeBundle\Entity\Menu
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesCibercafeBundle]]
+
+   samples.cibercafe.admin.tipo_impresion:
+     
+       class: Samples\CibercafeBundle\Admin\TipoImpresionAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Tipo de Impresión" }
+       arguments:
+           - ~
+           - Samples\CibercafeBundle\Entity\TipoImpresion
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesCibercafeBundle]]
+
+   samples.cibercafe.admin.velocidad_quemado:
+     
+       class: Samples\CibercafeBundle\Admin\VelocidadQuemadoAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Velocidad de Quemado de Discos" }
+       arguments:
+           - ~
+           - Samples\CibercafeBundle\Entity\VelocidadQuemado
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesCibercafeBundle]]
+
+   samples.cibercafe.admin.usuarios:
+     
+       class: Samples\CibercafeBundle\Admin\UsuarioAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Listado de Clientes" }
+       arguments:
+           - ~
+           - Samples\CibercafeBundle\Entity\Usuario
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesCibercafeBundle]]
+           - [ setSubClasses,[{ 'Cliente Asociado':'Samples\CibercafeBundle\Entity\UsuarioAsociado','Cliente Eventual':Samples\CibercafeBundle\Entity\UsuarioEventual}]]
+
+   samples.cibercafe.admin.servicios:
+     
+       class: Samples\CibercafeBundle\Admin\ServicioAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Servicios a Brindar" }
+       arguments:
+           - ~
+           - Samples\CibercafeBundle\Entity\Servicio
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesCibercafeBundle]]
+           - [ setSubClasses,[{ 'Cafeteria':'Samples\CibercafeBundle\Entity\ServicioCafeteria','Navegación':'Samples\CibercafeBundle\Entity\ServicioNavegacion','Quemado CD/DVD':'Samples\CibercafeBundle\Entity\ServicioQuemado','Impresión':'Samples\CibercafeBundle\Entity\ServicioImpresion'}]]
+
+   samples.cibercafe.admin.servicios_reservacion:
+     
+       class: Samples\CibercafeBundle\Admin\ServicioReservacionAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Reservaciones de Salones" }
+       arguments:
+           - ~
+           - Samples\CibercafeBundle\Entity\ServicioReservacion
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesCibercafeBundle]]
+           - [ setSubClasses,[{ 'Salón de Conferencia':'Samples\CibercafeBundle\Entity\ServicioReservacionSalonConferencia','Laboratorio':'Samples\CibercafeBundle\Entity\ServicioReservacionLaboratorio'}]]
+

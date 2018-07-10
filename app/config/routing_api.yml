@@ -1,0 +1,24 @@
+# Nelmio Api Docs
+
+NelmioApiDocBundle:
+    resource:     "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:       /_doc
+
+# Lexik JWT Auth
+
+api_login_check:
+    path: /_login_check
+    options:
+        expose: true
+
+# Gesdinet Jwt Refresh Token:
+    
+api_token_refresh:
+    path:     /_token/refresh
+    defaults: { _controller: gesdinet.jwtrefreshtoken:refresh }
+    options:
+        expose: true
+
+_samples_api:
+    resource: '@SamplesIndexBundle/Resources/config/routing_api.yml'
+    prefix:   /samples

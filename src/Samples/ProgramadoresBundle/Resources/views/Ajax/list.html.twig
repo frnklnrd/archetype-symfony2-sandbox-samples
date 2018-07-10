@@ -1,0 +1,21 @@
+<div class="nav navbar-inner">
+    <h2 class="span7 pull-left">Listado de Programadores</h2> 
+</div>
+<table class="table table-bordered table-hover table-striped">
+<thead>
+    <th>#</th>
+    <th>NOMBRE</th>
+    <th>SISTEMA OPERATIVO</th>
+    <th>LENGUAJES CONOCIDOS</th>
+</thead>
+<tbody>
+    {% for programador in programadores %}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{programador.nombrecompleto}}</td>
+        <td>{{programador.sistemaoperativo}}</td>
+        <td>{{ programador.lenguajesprogramacion | join(", ") }}</td>
+    </tr>
+    {% endfor%}
+</tbody>
+</table>

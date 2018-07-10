@@ -1,0 +1,49 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Menu del Dia{% endblock %}
+
+{% block content_center %}
+<div>
+    <h5>filtros</h5>
+<form method="get" action="">
+    {{ form_rest(filters_form) }}
+    <input type="submit" name="submit-filter" value="filter" />
+</form>
+</div>
+
+<div class="nav navbar navbar-inner">
+    <h3>
+        Menu del Dia     
+    </h3>
+</div>
+<table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr style="background-color: #F5F5F5;">
+                <th>#</th>
+                <th class="">Plato</th>
+                <th class="">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+	 {% for objeto in listado %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <span>{{ objeto.nombre}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.precio}}</span>
+                    </td>
+                </tr>
+	{% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+
+{% block add_javascript %}
+ <script>
+     //Indica al menu que se ponga activo(azul)
+     $('#left-menu-7').addClass('active');
+</script>     
+{% endblock %}

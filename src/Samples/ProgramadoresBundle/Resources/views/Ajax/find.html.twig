@@ -1,0 +1,85 @@
+<div class="nav navbar-inner">
+    <h2 class="span7 pull-left">Buscar Programadores</h2> 
+</div>
+<form class="form-search pull-right" id="form_ajax_buscar_programadores" action="{{path('samples_programadores_ajax_buscar_programadores')}}">
+    <img id="img-ajax-loader-for-buscar" src="{{ asset('bundles/samplesindex/img/ajax-wait.gif') }}" class="hide">
+    <label>Nombre</label>
+    <input type="text" class="input-medium search-query" name="nombre" id="nombre" placeholder="Escriba el nombre..." required="required">
+    <button type="submit" class="btn">Buscar</button>
+    <button type="reset" class="btn">Limpiar</button>
+
+</form>
+
+<table class="table table-bordered table-hover table-striped">
+<thead>
+    <th>#</th>
+    <th>NOMBRE</th>
+    <th>SISTEMA OPERATIVO</th>
+    <th>LENGUAJES</th>
+</thead>
+<tbody id="table_body_lista_programadores">
+</tbody>
+</table>
+
+<script>
+$(function(){
+		
+     $("#form_ajax_buscar_programadores").submit(function(event){
+	
+         // evitar el submit del formulario
+         event.preventDefault();
+         event.stopPropagation();
+       
+         var nombre = $("#nombre").attr("value");
+         if (nombre=="")
+         {
+             alert("Debe escribir el nombre");
+             return false;
+         }
+		 
+        $("#img-ajax-loader-for-buscar").show();
+		 
+        $("#table_body_lista_programadores").html("");
+		 
+        $.ajax({ url: $(this).attr("action"),
+                type: 'POST',
+                data: $(this).serialize(),
+                async: false // veamos con true a ver que pasa
+        })
+        .done(function(json_data){
+            if (json_data.programadores.length==0)
+                 alert("No se encontraron coincidencias");
+            else
+            {
+               //for (var i=0; i< json_data.programadores.length; i++)
+               // programador = json_data.programadores[i];
+               $.each(json_data.programadores, function(i,programador) // para cada elemento del areglo devuelto
+               {
+                  var tr=document.createElement("tr");
+                  var td1=document.createElement("td");
+                  var td2=document.createElement("td");
+                  var td3=document.createElement("td");
+                  var td4=document.createElement("td");
+
+                  $(td1).html(i+1);
+                  $(td2).html(programador.nombre); // json_data.programadores[i]
+                  $(td3).html(programador.sistema); // json_data.programadores[i]
+                  $(td4).html(programador.lenguajes); // json_data.programadores[i]
+
+                  $(tr).append(td1);
+                  $(tr).append(td2);
+                  $(tr).append(td3);
+                  $(tr).append(td4);
+                  $("#table_body_lista_programadores").append(tr);
+               });
+            }             
+        })
+        .fail(function(error){
+             $("#img-ajax-loader-for-buscar").hide();
+             alert(error);
+        });
+                 
+         $("#img-ajax-loader-for-buscar").hide();
+     });
+});
+</script>

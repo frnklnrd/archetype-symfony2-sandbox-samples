@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="pt" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="admin.dashboard.anolectivo.list">
+                <source>Ano Lectivo List</source>
+                <target>Anos Lectivos</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.categoriaprofissional.list">
+                <source>Categoria Profissional List</source>
+                <target>Categorias Profissionais</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.departamento.list">
+                <source>Departamento List</source>
+                <target>Departamentos</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.disciplina.list">
+                <source>Disciplina List</source>
+                <target>Disciplinas</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.grauacademico.list">
+                <source>Grau Academico List</source>
+                <target>Graus Académicos</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.tipoactividade.list">
+                <source>Tipo Actividade List</source>
+                <target>Tipos de Actividades</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.tipodecisao.list">
+                <source>Tipo Decisao List</source>
+                <target>Tipos de Decisões</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.tipoproducaocientifica.list">
+                <source>Tipo Producao Cientifica List</source>
+                <target>Tipos de Produções Científicas</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.pessoal.list">
+                <source>Pessoal List</source>
+                <target>Pessoal Docente</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.avaliacaodesempenho.list">
+                <source>Avaliacao Desempenho List</source>
+                <target>Avaliações de Desempenho</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

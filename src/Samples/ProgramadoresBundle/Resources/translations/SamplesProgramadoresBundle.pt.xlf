@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="pt" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="link_actions">
+                <source>link_actions</source>
+                <target>Ações</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.estudante.list">
+                <source>Estudante List</source>
+                <target>Estudantes</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.anolectivo.list">
+                <source>Ano Lectivo List</source>
+                <target>Anos Lectivos</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.curso.list">
+                <source>Curso List</source>
+                <target>Cursos</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.classes.list">
+                <source>Classes List</source>
+                <target>Classes</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.turma.list">
+                <source>Turma List</source>
+                <target>Turmas</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.provincia.list">
+                <source>Provincia List</source>
+                <target>Provincias</target>
+            </trans-unit>
+            <trans-unit id="admin.dashboard.municipio.list">
+                <source>Municipio List</source>
+                <target>Municipios</target>
+            </trans-unit>
+			
+        </body>
+    </file>
+</xliff>

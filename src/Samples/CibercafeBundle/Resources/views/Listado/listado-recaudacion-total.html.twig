@@ -1,0 +1,41 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Recaudación Total{% endblock %}
+
+{% block content_center %}
+<div class="nav navbar navbar-inner">
+    <h3>
+        Recaudación Total : {{total}} pesos      
+    </h3>
+</div>
+<table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr style="background-color: #F5F5F5;">
+                <th>#</th>
+                <th class="">Servicio</th>
+                <th class="">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+	 {% for objeto in listado %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <span>{{ objeto.tipo}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.precio}}</span>
+                    </td>
+                </tr>
+	{% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+
+{% block add_javascript %}
+ <script>
+     //Indica al menu que se ponga activo(azul)
+     $('#left-menu-6').addClass('active');
+</script>     
+{% endblock %}

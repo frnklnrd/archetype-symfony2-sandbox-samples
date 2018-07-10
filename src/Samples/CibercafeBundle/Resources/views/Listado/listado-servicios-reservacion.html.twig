@@ -1,0 +1,53 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Listado de Servicios de Reservación{% endblock %}
+
+{% block content_center %}
+<div class="nav navbar navbar-inner">
+    <h3>
+        Listado de Servicios de Reservación         
+    </h3>
+</div>
+<table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr style="background-color: #F5F5F5;">
+                <th>#</th>
+                <th class="">Tipo</th>
+                <th class="">Fecha</th>
+                <th class="">Usuario</th>
+                <th class="">Entidad</th>
+                <th class="">Hora Inicio</th>
+            </tr>
+        </thead>
+        <tbody>
+	 {% for objeto in listado %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <span>{{ objeto.tipo}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.fecha | date('d/m/Y')}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.usuario}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.entidad}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.horainicio | date('H:i')}}</span>
+                    </td>
+                </tr>
+	{% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+
+{% block add_javascript %}
+ <script>
+     //Indica al menu que se ponga activo(azul)
+     $('#left-menu-5').addClass('active');
+</script>     
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block content %}
+{{ parent() }}      
+<div id="ajax-content">
+    <div class="nav navbar-inner">
+        <h2>Bienvenido al Ajax Sample Bundle.</h2>
+    </div>
+    <h3>Vea nuestros Ejemplos AJAX + JSON usando JQuery.</h3>    
+</div>
+ {% endblock %}
+
+ {% block javascripts %}
+{{ parent() }}      
+<script>
+
+    function load_ajax_content(url)
+    {
+        $("#ajax-content").hide();
+        $("#ajax-waiting-loader").show();
+        $.ajax({url: url,
+            type: 'GET',
+            async: false
+        })
+                .done(function(html) {
+                    $("#ajax-waiting-loader").hide();
+                    $("#ajax-content").html(html);
+                    $("#ajax-content").show("fade");
+                })
+                .fail(function(error) {
+                    $("#ajax-waiting-loader").hide();
+                    alert(error);
+                    $("#ajax-content").show("fade");
+                });
+        $("#ajax-loader").hide();
+
+    }
+
+    $(function() {
+
+        // para todos los links del menu ajax
+
+        $(".menu-a-load-ajax-content").click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            load_ajax_content($(this).attr("data-href"));
+        });  // fin del click del menu
+
+        // fin del onload de jquery  
+    });
+</script>
+   {% endblock %}

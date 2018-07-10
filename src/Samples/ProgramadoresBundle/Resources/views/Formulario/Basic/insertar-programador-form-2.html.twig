@@ -1,0 +1,52 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Ejemplos Formularios{% endblock %}
+
+{% block stylesheets %}
+{{ parent()}}
+<style>
+    label {
+        display: inline;
+    }
+</style> 
+{% endblock%}
+
+{% block content%}
+
+<form action="">
+    <div>
+        <label>Nombre</label>
+        <input type="text" name="nombre" value="">
+    </div>
+    <div>
+        <label>Sexo</label>
+        <input type="radio" name="sexo" checked="checked" value="1"> F 
+        <input type="radio" name="sexo" value="2"> M
+    </div>
+    <div>
+        <label>Certificado</label>
+        <input type="checkbox" name="certificado" value="1">
+    </div>
+    <div>
+        <label>Sistema Preferido</label>
+        <select name="sistema">
+            <option value="">-- Seleccione --</option>
+            {% for sistema in sistemas_operativos %}
+            <option value="{{ sistema.id}}">{{sistema.nombre}}</option>
+            {% endfor%}
+        </select>
+    </div>
+    <div>
+        <label>Lenguajes Conocidos</label>
+        <div>
+            {% for lenguaje in lenguajes_programacion %}
+            <label>{{lenguaje.nombre}}</label> <input type="checkbox" name="lenguajes_programacion" value="{{lenguaje.id}}">
+            {% endfor%}
+        </div>
+    </div>
+    <div>
+        <input type="reset" name="reset" id="resetb" value="LIMPIAR">
+        <input type="submit" name="submit" id="submitb" value="ENVIAR">
+    </div>
+</form>
+{% endblock %}

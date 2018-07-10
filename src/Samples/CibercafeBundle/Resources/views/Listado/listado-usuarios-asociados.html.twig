@@ -1,0 +1,151 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Listado de Clientes Asociados{% endblock %}
+
+{% block add_css %}
+<style>
+        #filtros-form input
+        {
+            margin-right: 15px;
+        }
+        #filtros-form label
+        {
+            width: 155px;
+            margin-top: 5px;
+            float: left;
+            text-align: right;
+            margin-right: 15px;
+        }   
+    </style>
+{% endblock%}
+
+{% block content_center %}
+    <div class="nav navbar navbar-inner">
+        <h3>
+            Listado de Clientes Asociados            
+        </h3>
+    </div>
+    <table class="table table-bordered table-striped table-hover">
+        <caption>
+            <div class="nav navbar navbar-inner">
+                <div class="pull-left span3" style="margin:25px;">
+                    Total <strong>{{ paginator.totalItems }}</strong> elementos, mostrando del {{ paginator.startPageItem}} al {{ paginator.endPageItem }}
+                </div>
+                <div class="pagination pagination-right span3">
+                    {{ simple_paginator_render('_app_listado_usuarios_asociados', null, {
+                                                'routeParams' : {},
+                                                'container_class' : 'simple_paginator',
+                                                'firstPageText'  : '««',
+                                                'firstEnabledClass': 'first',
+                                                'firstDisabledClass': 'disabled',
+                                                'previousPageText': '«',
+                                                'previousEnabledClass': 'left',
+                                                'previousDisabledClass': 'disabled',
+                                                'currentClass': 'active',
+                                                'nextPageText': '»',
+                                                'nextEnabledClass': 'right',
+                                                'nextDisabledClass': 'disabled',
+                                                'lastPageText': '»»',
+                                                'lastEnabledClass': 'last',
+                                                'lastDisabledClass': 'disabled'
+                                        })}}
+                    </div>
+                    <div style="margin: 25px;" class="">
+                        <a href="#mostrar-filtros" id="a-mostrar-filtros" ><i class="icon-zoom-in"></i> Mostrar Filtros</a>
+                        <a href="#ocultar-filtros" id="a-ocultar-filtros" class="hide"><i class="icon-search"></i> Ocultar Filtros</a>
+                    </div>
+                </div>
+                <div class="nav navbar navbar-inner hide fade in" id="div-filtros-form" style="text-align: left;">
+                    <form method="post" action="" id="filtros-form">
+                        <div style="margin-top:15px;"><h4>Aplicar Filtros</h4></div>
+                          {{ form_rest(filters_form) }}
+                        <a href=""><button type="button" name="reset-filter" id="btn-reset-filtros" class="btn">Limpiar</button></a>
+                        <button type="submit" name="submit-filter" id="btn-submit-filtros" class="btn btn-primary">Filtrar</button>
+                    </form>
+                </div>                
+            </caption>
+            <thead>
+                <tr style="background-color: #F5F5F5;">
+                    <th>#</th>
+                    <th class="">CI</th>
+                    <th class="">Nombre</th>
+                    <th class="">Apellidos</th>
+                    <th class="">T. crédito</th>
+                    <th class="">Años</th>
+                    <th class="">Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+	 {% for objeto in listado %}
+                    <tr>
+                        <td>{{ paginator.startPageItem + loop.index0 }}</td>
+                        <td>
+                            <span>{{ objeto.carnetidentidad}}</span>
+                        </td>
+                        <td>
+                            <span>{{ objeto.nombre}}</span>
+                        </td>
+                        <td>
+                            <span>{{ objeto.apellidos}}</span>
+                        </td>
+                        <td>
+                            <span>{{ objeto.numtarjetacredito}}</span>
+                        </td>
+                        <td>
+                            <span>{{ objeto.cantannos}}</span>
+                        </td>
+                        <td>
+                            <span>{{ objeto.categoria}}</span>
+                        </td>
+                    </tr>
+	{% endfor %}
+                </tbody>
+            </table>
+
+{% endblock %}
+
+{% block add_javascript %}
+            <script>
+           $(function (){
+     
+                $('#left-menu-1').addClass('active');
+     
+                $("ul.simple_paginator li a").click(function(){
+     
+                   $("#filtros-form").attr("action", $(this).attr("href"));
+        
+                   $("#btn-submit-filtros").click();
+
+                   return false;
+                });
+ 
+               $("#a-mostrar-filtros").click(function(){
+                   $("#a-mostrar-filtros").hide();
+                   $("#a-ocultar-filtros").show();     
+                   $("#div-filtros-form").show();
+                });
+               $("#a-ocultar-filtros").click(function(){
+                   $("#a-mostrar-filtros").show();
+                   $("#a-ocultar-filtros").hide();     
+                   $("#div-filtros-form").hide();
+                });
+               
+               $( "#form_fecha_asociado_left_date" ).datepicker({
+                        dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true,
+			onClose: function( selectedDate ) {
+				$( "#form_fecha_asociado_right_date" ).datepicker( "option", "minDate", selectedDate );
+			}
+		});
+		$( "#form_fecha_asociado_right_date" ).datepicker({
+                        dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true,
+			onClose: function( selectedDate ) {
+				$( "#form_fecha_asociado_left_date" ).datepicker( "option", "maxDate", selectedDate );
+			}
+		});
+           });
+                </script>     
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Worker</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ object.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ object.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ object.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{% if object.birthdate %}{{ object.birthdate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ object.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ object.phone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('object_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('object_edit', { 'id': object.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

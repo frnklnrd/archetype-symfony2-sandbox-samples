@@ -1,0 +1,16 @@
+sonata_admin:
+    dashboard:
+        groups:
+            samples_cibercafe:
+                label: Cibercafe
+                label_catalogue: SamplesCibercafeBundle
+                icon: '<i class="fa fa-cogs"></i>'
+                items:
+                    - samples.cibercafe.admin.usuarios
+                    - samples.cibercafe.admin.servicios
+                    - samples.cibercafe.admin.servicios_reservacion
+                    - samples.cibercafe.admin.categoria_usuario_asociado
+                    - samples.cibercafe.admin.instalador
+                    - samples.cibercafe.admin.menu
+                    - samples.cibercafe.admin.tipo_impresion
+                    - samples.cibercafe.admin.velocidad_quemado

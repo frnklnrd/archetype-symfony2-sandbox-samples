@@ -1,0 +1,98 @@
+<ul class="nav nav-list bs-docs-sidenav" id="left-menu-dashboard-list">
+
+    <li class="active">
+        <a href="#basic-samples"><i class="icon-calendar"></i> Ejemplos Básicos</a>    
+    </li> 
+
+    <li class="dropdown-submenu"><a tabindex="-1"><i class="icon-th"></i><i class="icon-chevron-right"></i> HTML Estáticos</a>
+        <ul class="dropdown-menu pull-right">
+            <li><a href="{{ path('samples_programadores_basic_ejemplo_1')}}"><i class="icon-minus"></i> Simple Response</a></li>
+            <li><a href="{{ path('samples_programadores_basic_ejemplo_2')}}"><i class="icon-minus"></i> HTML + Response</a></li>
+            <li><a href="{{ path('samples_programadores_basic_ejemplo_3')}}"><i class="icon-minus"></i> Twig + Response</a></li>
+            <li><a href="{{ path('samples_programadores_basic_ejemplo_4')}}"><i class="icon-minus"></i> Twig</a></li>
+        </ul>
+    </li>
+
+    <li class="active">
+        <a href="#database-samples"><i class="icon-hdd"></i> Acceso a Datos</a>    
+    </li>  
+
+    <li class="dropdown-submenu"><a tabindex="-1"><i class="icon-th-large"></i><i class="icon-chevron-right"></i> Consultas SQLs</a>
+        <ul class="dropdown-menu pull-right">
+            <li><a href="{{ path('samples_programadores_database_sql_ejemplo_1')}}"><i class="icon-minus"></i> Consulta SQL + Debug</a></li>            
+            <li><a href="{{ path('samples_programadores_database_sql_ejemplo_2')}}"><i class="icon-minus"></i> Consulta SQL + Debug + &lt;pre&gt;</a></li>
+            <li><a href="{{ path('samples_programadores_database_sql_ejemplo_3')}}"><i class="icon-minus"></i> Consulta SQL + Twig</a></li>                
+        </ul>
+    </li>
+
+    <li class="dropdown-submenu"><a tabindex="-1"><i class="icon-th-large"></i><i class="icon-chevron-right"></i> Consultas DQLs</a>
+        <ul class="dropdown-menu pull-right">
+            <li><a href="{{ path('samples_programadores_database_dql_ejemplo_1')}}"><i class="icon-minus"></i> Doctrine + Repository + Twig</a></li>            
+            <li><a href="{{ path('samples_programadores_database_dql_ejemplo_2')}}"><i class="icon-minus"></i> Doctrine + DQL + Twig (lazy load)</a></li>
+            <li><a href="{{ path('samples_programadores_database_dql_ejemplo_3')}}"><i class="icon-minus"></i> Doctrine + DQL + Twig</a></li>
+            <li><a href="{{ path('samples_programadores_database_dql_ejemplo_4')}}"><i class="icon-minus"></i> Doctrine + QueryBuilder + Twig (lazy load)</a></li>
+            <li><a href="{{ path('samples_programadores_database_dql_ejemplo_5')}}"><i class="icon-minus"></i> Doctrine + QueryBuilder + Twig</a></li>                
+        </ul>
+    </li>
+
+
+    <li class="active">
+        <a href="#formularios-samples"><i class="icon-list-alt"></i> Formularios</a>    
+    </li>  
+
+    <li class="dropdown-submenu"><a tabindex="-1"><i class="icon-list"></i><i class="icon-chevron-right"></i> Básicos</a>
+        <ul class="dropdown-menu pull-right">
+            <li><a href="{{ path('samples_programadores_formulario_insertar_form_1')}}"><i class="icon-minus"></i> Formulario HTML estático</a></li>
+            <li><a href="{{ path('samples_programadores_formulario_insertar_form_2')}}"><i class="icon-minus"></i> Formulario HTML por GET + Doctrine data</a></li>
+            <li><a href="{{ path('samples_programadores_formulario_insertar_form_3')}}"><i class="icon-minus"></i> Formulario HTML por POST + Doctrine data</a></li>
+            <li><a href="{{ path('samples_programadores_formulario_insertar_form_4')}}"><i class="icon-minus"></i> Formulario HTML(1) + Doctrine persist</a></li>
+            <li><a href="{{ path('samples_programadores_formulario_insertar_form_5')}}"><i class="icon-minus"></i> Formulario HTML(2) + Doctrine persist</a></li>               
+        </ul>
+    </li>
+
+    <li class="dropdown-submenu"><a tabindex="-1"><i class="icon-book"></i><i class="icon-chevron-right"></i> Usando CRUD</a>
+        <ul class="dropdown-menu pull-right">
+            <li><a href="{{ path('samples_programadores_formularios_crud_programador')}}"><i class="icon-list-alt"></i> Mostrar Listado</a></li>
+            <li><a href="{{ path('samples_programadores_formularios_crud_programador_new')}}"><i class="icon-plus"></i> Adicionar</a></li>              
+        </ul>
+    </li>
+
+
+    <li class="active">
+        <a href="#formularios-samples"><i class="icon-filter"></i> Paginacion y Filtros</a>    
+    </li>  
+
+    <li><a href="{{ path('samples_programadores_paginator_filter_listado_programador')}}">
+            <i class="icon-list-alt"></i>
+            <i class="icon-chevron-right"></i>
+            Listado Paginado y Filtrado</a>
+    </li>  
+
+    <li class="active">
+        <a href="#ajax-samples"><i class="icon-refresh"></i> Ejemplos AJAX</a>
+    </li>
+    <li>
+        <a href="{{ path('samples_programadores_ajax_index')}}"><i class="icon-share-alt"></i><i class="icon-chevron-right"></i> Cargar Ejemplos AJAX</a>
+    </li>
+    <li><a class="menu-a-load-ajax-content" data-href="{{ path('samples_programadores_ajax_lista_programadores')}}" href="{{ path('samples_programadores_ajax_index')}}">
+            <i class="icon-user"></i>
+            <i class="icon-chevron-right"></i>
+            Listado (get HTML)</a>
+    </li>
+    <li><a class="menu-a-load-ajax-content" data-href="{{ path('samples_programadores_ajax_adicionar_programador')}}" href="{{ path('samples_programadores_ajax_index')}}">
+            <i class="icon-plus"></i>
+            <i class="icon-chevron-right"></i>
+            Adicionar (process Form)</a>
+    </li>        
+    <li><a class="menu-a-load-ajax-content" data-href="{{ path('samples_programadores_ajax_buscar_programadores')}}" href="{{ path('samples_programadores_ajax_index')}}">
+            <i class="icon-search"></i>
+            <i class="icon-chevron-right"></i>
+            Buscar  (get JSON)</a>
+    </li>
+    <li><a class="menu-a-load-ajax-content" data-href="{{ path('samples_programadores_ajax_multiple_adicionar_programador')}}" href="{{ path('samples_programadores_ajax_index')}}">
+            <i class="icon-plus-sign"></i>
+            <i class="icon-chevron-right"></i>
+            Multi-Add (send JSON)</a>
+    </li> 
+
+</ul> 

@@ -1,0 +1,94 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Decisao
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Decisao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="decisao", type="string", length=255)
+     */
+    private $decisao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ordem", type="integer")
+     */
+    private $ordem;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set decisao
+     *
+     * @param string $decisao
+     * @return Decisao
+     */
+    public function setDecisao($decisao)
+    {
+        $this->decisao = $decisao;
+
+        return $this;
+    }
+
+    /**
+     * Get decisao
+     *
+     * @return string 
+     */
+    public function getDecisao()
+    {
+        return $this->decisao;
+    }
+
+    /**
+     * Set ordem
+     *
+     * @param integer $ordem
+     * @return Decisao
+     */
+    public function setOrdem($ordem)
+    {
+        $this->ordem = $ordem;
+
+        return $this;
+    }
+
+    /**
+     * Get ordem
+     *
+     * @return integer 
+     */
+    public function getOrdem()
+    {
+        return $this->ordem;
+    }
+}

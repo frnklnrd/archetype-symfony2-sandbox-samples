@@ -1,0 +1,15 @@
+sonata_admin:
+    dashboard:
+        groups:
+            samples_propinas:
+                label: Estudantes e Propinas
+                label_catalogue: SamplesEscuelaBundle
+                icon: '<i class="fa fa-bitcoin"></i>'
+                items:
+                    - samples.propinas.admin.estudante
+                    - samples.propinas.admin.ano_lectivo
+                    - samples.propinas.admin.curso
+                    - samples.propinas.admin.classe
+                    - samples.propinas.admin.turma
+                    - samples.propinas.admin.provincia
+                    - samples.propinas.admin.municipio

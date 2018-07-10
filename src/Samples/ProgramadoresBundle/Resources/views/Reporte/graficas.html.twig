@@ -1,0 +1,256 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Reporte con Gráficas{% endblock %}
+
+{% block content%}
+
+<div class="nav navbar-inner">
+    <h2 class="span6 pull-left">Reportes en Gráficas</h2>  
+</div>
+
+<ul class="nav nav-tabs" id="myGraphicsTab">
+    <li class="active"><a href="#tab-chart-1">Gráfica de Barras</a></li>
+    <li><a href="#tab-chart-2">Gráfica de Columnas</a></li>
+    <li><a href="#tab-chart-3">Gráfica de Pastel</a></li>
+    <li><a href="#tab-chart-4">Gráfica de Línea</a></li>
+</ul>
+
+<div class="tab-content" style="text-align: center;" id="myGraphicsTabBody">
+    <div class="tab-pane active" id="tab-chart-1">
+        <div id="container-chart-column-1" style="width: 750px; height: 400px; margin: 0 auto"></div>
+    </div>
+    <div class="tab-pane" id="tab-chart-2">
+        <div id="container-chart-column-2" style="width: 750px; height: 400px; margin: 0 auto"></div>
+    </div>
+    <div class="tab-pane" id="tab-chart-3">
+        <div id="container-chart-pie-1" style="width: 750px; height: 400px; margin: 0 auto"></div>
+    </div>
+    <div class="tab-pane" id="tab-chart-4">
+        <div id="container-chart-line-1" style="width: 750px; height: 400px; margin: 0 auto"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts%}
+{{ parent()}}
+<script src="{{ asset('bundles/samplesindex/vendor/highcharts/js/highcharts.js') }}"></script>
+<script type="text/javascript">
+            $(function() {
+
+            $('#myGraphicsTab a').click(function (e) {
+					e.preventDefault();
+					
+					$('#myGraphicsTab a').parent().removeClass("active");
+					$(this).parent().addClass('active');
+					
+					$('#myGraphicsTabBody div.tab-pane').removeClass("active");
+					$($(this).attr("href")).addClass('active');
+                    
+					//$(this).tab('show');
+            });
+
+            $('#container-chart-column-1').highcharts({
+            chart: {
+            type: 'bar'
+            },
+                    title: {
+                    text: 'Cantidades de Programadores y Proyectos por Lenguajes de Programación'
+                    },
+                    subtitle: {
+                    text: 'Source: symfony.com'
+                    },
+                    xAxis: {
+                    categories: [
+                    {% for lenguaje in lenguajes %}
+                    '{{lenguaje.NOMBRE_LENGUAJE}}',
+                    {% endfor%}
+                    ],
+                            title: {
+                            text: 'Lenguajes de Programación'
+                            }
+                    },
+                    yAxis: {
+                    min: 0,
+                            title: {
+                            text: 'Cantidades por Lenguaje'
+                            }
+                    },
+                    tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                    },
+                    plotOptions: {
+                    column: {
+                    pointPadding: 0.2,
+                            borderWidth: 0
+                    }
+                    },
+                    series: [{
+                    name: 'Programadores',
+                            data: [
+                                {% for lenguaje in lenguajes %}
+                                    {{lenguaje.CANTIDAD_PROGRAMADORES}},
+                                {% endfor%}
+                            ]
+                    }, {
+                    name: 'Proyectos',
+                            data: [
+                                {% for lenguaje in lenguajes %}
+                                    {{lenguaje.CANTIDAD_PROYECTOS}},
+                                {% endfor%}
+                            ]
+                    }]
+            });
+                    //---------------------------------------------
+
+                    $('#container-chart-column-2').highcharts({
+            chart: {
+            type: 'column'
+            },
+                    title: {
+                    text: 'Cantidades de Lenguajes de Programación por Programadores y Proyectos'
+                    },
+                    subtitle: {
+                    text: 'Source: symfony.com'
+                    },
+                    xAxis: {
+                    categories: [
+                            'Programadores',
+                            'Proyectos'
+                    ]
+                    },
+                    yAxis: {
+                    min: 0,
+                            title: {
+                            text: 'Cantidades'
+                            }
+                    },
+                    tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                    },
+                    plotOptions: {
+                    column: {
+                    pointPadding: 0.2,
+                            borderWidth: 0
+                    }
+                    },
+                    series: [
+                     {% for lenguaje in lenguajes %}
+                    {
+                    name: '{{lenguaje.NOMBRE_LENGUAJE}}',
+                            data: [
+                                {{lenguaje.CANTIDAD_PROGRAMADORES}},{{lenguaje.CANTIDAD_PROYECTOS}}
+                            ]
+                    },
+                    {% endfor%}
+                    ]
+            });
+                    // -----------------------------------------------------------------
+
+                    $('#container-chart-pie-1').highcharts({
+            chart: {
+            plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+            },
+                    title: {
+                    text: 'Por cientos en cantidades de Proyectos por Lenguaje de Programación'
+                    },
+                    tooltip: {
+                    pointFormat: 'Existen {point.y} proyectos en {point.name},<br>lo que representa el <b>{point.percentage:.1f} %</b><br> de los {point.total} en total.',
+                            percentageDecimals: 1
+                    },
+                    plotOptions: {
+                    pie: {
+                    allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                            enabled: true,
+                                    color: '#000000',
+                                    connectorColor: '#000000',
+                                    formatter: function() {
+                                    return '<b>' + this.point.name + '</b>: ' + this.percentage.toFixed(1) + ' %';
+                                    }
+                            },
+                            showInLegend: true
+                    }
+                    },
+                    series: [
+                    {
+                    type: 'pie',
+                            data: [
+                                    {% for lenguaje in lenguajes %}
+                            ['{{lenguaje.NOMBRE_LENGUAJE}}',{{lenguaje.CANTIDAD_PROYECTOS}}],
+                                    {% endfor%}
+                            ]
+                    }]
+            });
+                    //-------------------------------------------
+
+                    $('#container-chart-line-1').highcharts({
+            chart: {
+            type: 'line',
+                    marginRight: 130,
+                    // marginBottom: 55
+            },
+                    title: {
+                    text: 'Cantidad de Proyectos por Programador',
+                            x: - 20 //center
+                    },
+                    subtitle: {
+                    text: 'Source: symfony.com',
+                            x: - 20
+                    },
+                    xAxis: {
+                    categories: [
+                             {% for programador in programadores %}
+                    '{{programador.nombre}}',
+                             {% endfor%}
+                    ],
+                            labels: {
+                            rotation: - 45,
+                                    align: 'right',
+                                    style: {
+                                    fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                    }
+                            }
+                    },
+                    yAxis: {
+                    title: {
+                    text: 'Cantidad de Proyectos'
+                    },
+                            plotLines: [{
+                            value: 0,
+                                    width: 1,
+                                    color: '#808080'
+                            }]
+                    },
+                    tooltip: {
+                    valueSuffix: ' proyectos'
+                    },
+                    legend: false,
+                    series: [
+                    {
+                    name: 'Proyectos',
+                            data: [
+                            {% for programador in programadores %}
+                                {{programador.proyectos | length() }},
+                             {% endfor%}
+                            ]
+                    }]
+            });
+                    //-------------------------------------------
+            });
+</script>
+{% endblock%}

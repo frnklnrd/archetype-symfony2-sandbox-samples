@@ -1,0 +1,157 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Ejemplos CRUD{% endblock %}
+
+{% block stylesheets %}
+<style>
+    #filtros-form input
+    {
+        margin-right: 15px;
+    }
+    #filtros-form label
+    {
+        width: 200px;
+        margin-top: 5px;
+        float: left;
+        text-align: right;
+        margin-right: 15px;
+    } 
+    .navbar-inner { 
+        background: none;
+    }
+    #form_fecha_nacimiento > div
+    {
+        width: 200px; margin-left: 215px;
+    }
+    #form_fecha_nacimiento > :first-child
+    {
+        width: 500px; margin-left: 0px;
+    }
+</style>
+{% endblock%}
+
+{% block content%}
+
+<div class="nav navbar-inner">
+    <h2 class="span6 pull-left">Listado de Programadores</h2>
+</div>
+
+<!-- Modal -->
+<div id="modal-filtros-form" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form method="post" action="" id="filtros-form">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Aplicar Filtros</h3>
+        </div>
+        <div class="modal-body">
+                {{ form_rest(filters_form) }}
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" name="submit-filter" id="btn-submit-filtros" class="btn btn-primary">Filtrar</button>                    
+            <a href=""><button type="button" name="reset-filter" id="btn-reset-filtros" class="btn btn-info">Limpiar</button></a>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </form>
+</div>
+
+<table class="table table-bordered table-hover table-striped">
+    <caption>
+        <div class="nav navbar navbar-inner">
+            <div class="pull-left" style="margin-top:20px;">
+                Total : <strong>{{ paginator.totalItems }}</strong> elementos, mostrando del {{ paginator.startPageItem}} al {{ paginator.endPageItem }}
+            </div>
+            <div class="pagination pagination-right span4" style="margin-top:15px;">
+                    {{ simple_paginator_render('samples_programadores_paginator_filter_listado_programador', null, {
+                                                'routeParams' : {},
+                                                'container_class' : 'simple_paginator pager',
+                                                'firstPageText'  : '««',
+                                                'firstEnabledClass': 'first',
+                                                'firstDisabledClass': 'disabled',
+                                                'previousPageText': '«',
+                                                'previousEnabledClass': 'left',
+                                                'previousDisabledClass': 'disabled',
+                                                'currentClass': 'active',
+                                                'nextPageText': '»',
+                                                'nextEnabledClass': 'right',
+                                                'nextDisabledClass': 'disabled',
+                                                'lastPageText': '»»',
+                                                'lastEnabledClass': 'last',
+                                                'lastDisabledClass': 'disabled'
+                                        })}}
+            </div>
+            <div style="margin-top: 20px;" class="span">
+                <a href="#modal-filtros-form" role="button" data-toggle="modal" ><i class="icon-zoom-in"></i> Mostrar Filtros</a>
+            </div>
+
+        </div>             
+    </caption>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>CI</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Sexo</th>
+            <th>Certificado</th>
+            <th>Sistema</th>
+            <th>Lenguajes</th>
+        </tr>
+    </thead>
+    <tbody>{% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('samples_programadores_formularios_crud_programador_show', { 'id': entity.id }) }}">{{ paginator.startPageItem + loop.index0 }}</a></td>
+            <td>{{ entity.ci }}</td>
+            <td>{{ entity.nombrecompleto }}</td>
+            <td>{{ entity.fechanacimiento | date('Y-m-d') }}</td>
+            <td>{{ entity.sexodescripcion }}</td>
+            <td>{% if entity.certificado==1 %}Sí{% else%}No{% endif%}</td>
+            <td>{{entity.sistemaoperativo}}</td>
+            <td>{{ entity.lenguajesprogramacion | join(", ") }}</td>
+        </tr>{% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+
+{% block javascripts %}
+<script>
+
+    $(function() {
+
+        $('#header-menu-1').addClass('active');
+
+        // convertir en datepicker los campos de filtrado de fechas
+
+        $("#form_fecha_nacimiento_left_date").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function(selectedDate) {
+                $("#form_fecha_nacimiento_right_date").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#form_fecha_nacimiento_right_date").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function(selectedDate) {
+                $("#form_fecha_nacimiento_left_date").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+
+        // vincular los links del paginator con el formulario de filtros
+
+        $("ul.simple_paginator li a").click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $("#filtros-form").attr("action", $(this).attr("href"));
+            $("#filtros-form").submit();
+        });
+
+    });
+
+</script>
+{% endblock %}

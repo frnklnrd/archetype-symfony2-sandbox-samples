@@ -1,0 +1,40 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Ejemplos CRUD{% endblock %}
+
+{% block content%}
+
+<div class="nav navbar-inner">
+    <h2 class="span6 pull-left">Listado de Programadores</h2>
+    <a  class="btn pull-right" style="margin-top: 15px" href="{{ path('samples_programadores_formularios_crud_programador_new') }}">
+        <i class="icon-plus"></i> Adicionar
+    </a>
+</div>
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Sexo</th>
+            <th>Certificado</th>
+            <th class="span3"></th>
+        </tr>
+    </thead>
+    <tbody>{% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('samples_programadores_formularios_crud_programador_show', { 'id': entity.id }) }}">{{ loop.index }}</a></td>
+            <td><img class="img-polaroid" src="{{ asset(entity.webPath?entity.webPath:'bundles/samplesindex/img/no-foto.png')}}" alt="" title="" width="50px" height="40px"/>
+                <span>{{ entity.nombrecompleto }}</span>
+            </td>
+            <td>{{ entity.sexodescripcion }}</td>
+            <td>{% if entity.certificado==1 %}Sí{% else%}No{% endif%}</td>
+            <td>
+                <a href="{{ path('samples_programadores_formularios_crud_programador_show', { 'id': entity.id }) }}" class="btn"><i class="icon-eye-open"></i> Mostrar</a>
+                <a href="{{ path('samples_programadores_formularios_crud_programador_edit', { 'id': entity.id }) }}" class="btn btn-info"><i class="icon-edit"></i> Editar</a>
+            </td>
+        </tr>{% endfor %}
+    </tbody>
+</table>
+
+    {% endblock %}

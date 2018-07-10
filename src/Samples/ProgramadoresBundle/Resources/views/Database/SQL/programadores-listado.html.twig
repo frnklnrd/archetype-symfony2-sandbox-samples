@@ -1,0 +1,25 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Ejemplos SQL{% endblock %}
+
+{% block content%}
+
+<table class="table table-bordered table-hover table-striped">
+<thead>
+    <th>No</th>
+    <th>NOMBRE</th>
+    <th>SISTEMA OPERATIVO</th>
+    <th>LENGUAJES CONOCIDOS</th>
+</thead>
+<tbody>
+    {% for programador in programadores %}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{programadores[loop.index0]['NOMBRE']}}</td>
+        <td>{{programador['SISTEMA']}}</td>
+        <td>{{programador.LENGUAJE}}</td>
+    </tr>
+    {% endfor%}
+</tbody>
+</table>
+{% endblock %}

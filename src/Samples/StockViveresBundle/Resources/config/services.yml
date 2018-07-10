@@ -1,0 +1,66 @@
+services:
+    samples.stockviveres.admin.classe:
+        class: Samples\StockViveresBundle\Admin\ClasseAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\Classe, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Classes de Produtos}
+
+    samples.stockviveres.admin.classificacao:
+        class: Samples\StockViveresBundle\Admin\ClassificacaoAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\Classificacao, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Classificacao dos Produtos}
+
+    samples.stockviveres.admin.existencia:
+        class: Samples\StockViveresBundle\Admin\ExistenciaAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\Existencia, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Existencias}
+
+    samples.stockviveres.admin.funcionario:
+        class: Samples\StockViveresBundle\Admin\FuncionarioAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\Funcionario, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Funcionarios}
+
+    samples.stockviveres.admin.grupo:
+        class: Samples\StockViveresBundle\Admin\GrupoAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\Grupo, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Grupos de Produtos}
+
+    samples.stockviveres.admin.movimento:
+        class: Samples\StockViveresBundle\Admin\MovimentoAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\Movimento, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Movimentos de Stock}
+
+    samples.stockviveres.admin.produto:
+        class: Samples\StockViveresBundle\Admin\ProdutoAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\Produto, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Existencia dos Produtos}
+
+    samples.stockviveres.admin.tipo_embalagem:
+        class: Samples\StockViveresBundle\Admin\TipoEmbalagemAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\TipoEmbalagem, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Tipos de Embalagem}
+
+    samples.stockviveres.admin.tipo_movimento:
+        class: Samples\StockViveresBundle\Admin\TipoMovimentoAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\TipoMovimento, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Tipos de Movimentos}
+
+    samples.stockviveres.admin.tipo_produto:
+        class: Samples\StockViveresBundle\Admin\TipoProdutoAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\TipoProduto, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Tipos de Produtos}
+
+    samples.stockviveres.admin.unidade_medida:
+        class: Samples\StockViveresBundle\Admin\UnidadeMedidaAdmin
+        arguments: [~, Samples\StockViveresBundle\Entity\UnidadeMedida, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Unidades de Medida}

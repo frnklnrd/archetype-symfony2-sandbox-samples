@@ -1,0 +1,56 @@
+# relative to app/config/routing.yml
+
+# sonata routes
+sonata_user_security:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
+#    schemes: [https]
+
+sonata_user_resetting:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
+    prefix: /user/resetting
+
+sonata_user_profile:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
+    prefix: /user/profile
+
+sonata_user_register:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
+    prefix: /user/register
+#    schemes: [https]
+
+sonata_user_change_password:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
+    prefix: /user/profile
+
+gregwar_captcha_routing:
+    resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"
+
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+homepage:
+    path:   /
+    defaults:  
+        _controller: FrameworkBundle:Redirect:redirect
+        route: home
+#        #route: sonata_admin_dashboard
+#        permanent: true
+
+home:
+    path: /home
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    ':home:home.html.twig'
+
+_samples:
+    resource: '@SamplesIndexBundle/Resources/config/routing_front.yml'
+    prefix:   /app/samples
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
+    prefix: /
+        
+
+

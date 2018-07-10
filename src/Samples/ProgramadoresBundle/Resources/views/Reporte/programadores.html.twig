@@ -1,0 +1,65 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Reporte Programadores{% endblock %}
+
+{% block content%}
+
+<div class="nav navbar-inner">
+    <h2 class="span5 pull-left">Listado de Programadores</h2>
+    <div class="span2 pull-right" style="margin-top: 21px;">
+        <a href="{{ path('samples_programadores_reporte_ejemplo_1_print')}}"
+           onclick="window.open(this.href, '_print', 'toolbar=no,menubar=no,scrollbars=yes,location=no,width=875,heigth=575');
+                     return false;">
+            <i class="icon-file"></i> Imprimir</a>
+    </div>
+</div>
+
+{% for entity in programadores %}
+
+<div class="well" style="display: inline-block">
+
+    <div class="pull-left span5">
+
+        <div class="pull-left">
+            <pre style="margin-left:8px;padding:4px 14px 4px 14px;">{{ loop.index }}</pre>
+        </div>
+
+        <div class="pull-left" style="margin-left: 5px;">
+            <h4 style="margin-top: 5px;">
+                <i class="icon-user"></i> 
+                <strong>{{ entity.nombrecompleto }}</strong>
+            </h4>
+        </div>
+
+    </div>
+
+    <div class="pull-right span2">
+        <img class="img-rounded" src="{{ asset(entity.webPath?entity.webPath:('/bundles/samplesindex/img/no-foto.png'))}}" alt="" title="" width="100px" height="100px"/>
+    </div>
+
+    <div class="pull-left span5">
+        <div class="span5">
+            <i class="icon-time"></i>
+            <strong class="muted">Fecha Nacimiento : {{ entity.fechanacimiento |date('F d, Y') }} </strong>
+        </div>
+        <div style="margin-top:5px;" class="span5">
+            <i class="icon-globe"></i>
+            <span>Sistema Preferido :</span><strong>{{ entity.sistemaoperativo }}</strong>    
+        </div>
+        <div style="margin-top:5px;" class="span5">
+            <i class="icon-wrench"></i>
+            {% set cantidad = (entity.proyectos | length()) %}
+            {% transchoice cantidad %}
+            {0} <span>Ningun proyecto realizado</span>
+            |{1} <strong> 1 </strong><span>Proyecto realizado</span> 
+            |]1,Inf] <strong> %cantidad% </strong><span>Proyectos realizados</span> 
+            {% endtranschoice %}
+        </div>
+    </div>
+
+</div>
+
+
+{% endfor %}
+
+{% endblock %}

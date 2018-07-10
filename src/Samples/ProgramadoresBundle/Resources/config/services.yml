@@ -1,0 +1,26 @@
+services:
+
+     samples.programadores.admin.programador:
+       class: Samples\ProgramadoresBundle\Admin\ProgramadorAdmin
+       arguments: [ ~ , Samples\ProgramadoresBundle\Entity\Programador , SonataAdminBundle:CRUD]
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: _____, label: "Programadores" }
+
+     samples.programadores.admin.proyecto:
+       class: Samples\ProgramadoresBundle\Admin\ProyectoAdmin
+       arguments: [ ~ , Samples\ProgramadoresBundle\Entity\Proyecto , SonataAdminBundle:CRUD]
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Proyectos" }
+
+     samples.programadores.admin.sistema_operativo:
+       class: Samples\ProgramadoresBundle\Admin\SistemaOperativoAdmin
+       arguments: [ ~ , Samples\ProgramadoresBundle\Entity\SistemaOperativo , SonataAdminBundle:CRUD]
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: _____, label: "Sistemas Operativos" }
+
+     samples.programadores.admin.lenguaje_programacion:
+       class: Samples\ProgramadoresBundle\Admin\LenguajeProgramacionAdmin
+       arguments: [ ~ , Samples\ProgramadoresBundle\Entity\LenguajeProgramacion , SonataAdminBundle:CRUD]
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: _____, label: "Lenguajes" }
+

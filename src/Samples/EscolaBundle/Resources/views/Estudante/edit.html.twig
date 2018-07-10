@@ -1,0 +1,34 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+
+$(function(){
+
+    // validao o formulario
+    
+    $('form').submit(function( event ) {
+
+	    // evitar o submit do formulario
+			
+        if ( $('#{{form.bi.vars.id}}').val().trim()=="")
+        {
+			event.preventDefault();
+			event.stopPropagation();
+
+            alert('O campo "{{form.bi.vars.label}}" deve ser preenchido');
+
+            $('.nav-tabs-custom li:eq(0) a').tab('show');
+			
+			$('#{{form.bi.vars.id}}').focus();
+			
+			return false;
+        }
+        
+    });    
+
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover">
+    <tbody>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Apellidos</th>
+            <td>{{ entity.apellidos }}</td>
+        </tr>
+        <tr>
+            <th>Num_pc_asignada</th>
+            <td>{{ entity.numPCasignada }}</td>
+        </tr>
+        <tr>
+            <th>Num_tarjeta_credito</th>
+            <td>{{ entity.numtarjetacredito }}</td>
+        </tr>
+        <tr>
+            <th>Carnet_identidad</th>
+            <td>{{ entity.carnetidentidad }}</td>
+        </tr>
+{% if tipo_usuario == "asociado"%}         
+        <tr>
+            <th>Cant_annos</th>
+            <td>{{ entity.cantannos }}</td>
+        </tr>
+        <tr>
+            <th>Categoria</th>
+            <td>{{ entity.categoria }}</td>
+        </tr>        
+{% endif %}        
+    </tbody>
+</table>

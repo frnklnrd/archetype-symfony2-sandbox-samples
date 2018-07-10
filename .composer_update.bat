@@ -1,0 +1,2 @@
+composer -vvv update
+pause

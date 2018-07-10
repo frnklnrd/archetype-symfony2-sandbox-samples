@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Samples Index{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="">
+                            <h3 class="navbar-text col-lg-11">Welcome to Symfony Samples Page</h3>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-12">
+                <nav class="col-lg-6">
+                    <div class="list-group">
+                        <div class="list-group-item"><h4>Company:</h4> Samples with RESTful based API functions and Angular JS Client Interfaces - <a href="{{ path('samples_company_index')}}">front area</a></div>
+                        <hr>
+                        <div class="list-group-item"><h4>Programadores:</h4> Samples using Front Controllers, Twig, SQL, DQL, CRUD, Filters, Pagination, Ajax and Charts - <a href="{{ path('samples_programadores_index')}}">front area</a> or <a href="{{ path('samples_programadoresadmin_programador_list')}}" target="_blank">admin area</a></div>
+                        <div class="list-group-item"><h4>Escuela:</h4> Samples with Sonata Admin Controllers and Hierarchic Samples - <a href="{{ path('admin_samples_escuela_persona_list')}}" target="_blank">admin area</a></div>
+                        <div class="list-group-item"><h4>Cibercafé:</h4> Samples with Sonata Admin Controllers and Hierarchic Samples - <a href="{{ path('samples_cibercafe_index')}}">front area</a> or <a href="{{ path('admin_samples_cibercafe_usuario_list')}}" target="_blank">admin area</a></div>
+                    </div>
+                </nav>
+                <nav class="col-lg-6">
+                    <div class="list-group">
+                        <div class="list-group-item"><h4>Escola:</h4> Samples with Sonata Admin Controllers and mutiple kind of relations - <a href="{{ path('admin_samples_escola_estudante_list')}}" target="_blank">admin area</a></div>
+                        <div class="list-group-item"><h4>Avaliação de Desempenho:</h4> Samples with Sonata Admin Controllers - <a href="{{ path('admin_samples_avaliacaodesempenho_pessoal_list')}}"  target="_blank">admin area</a></div>
+                        <div class="list-group-item"><h4>Propinas Estudiantis:</h4> Samples with Sonata Admin Controllers - <a href="{{ path('admin_samples_propinasestudiantis_estudante_list')}}"  target="_blank">admin area</a></div>
+                        <div class="list-group-item"><h4>Farmacia e Medicamentos:</h4> Samples with Sonata Admin Controllers - <a href="{{ path('admin_samples_farmacia_movimento_list')}}"  target="_blank">admin area</a></div>
+                        <div class="list-group-item"><h4>Stock de Viveres:</h4> Samples with Sonata Admin Controllers - <a href="{{ path('admin_samples_stockviveres_movimento_list')}}"  target="_blank">admin area</a></div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock content %}

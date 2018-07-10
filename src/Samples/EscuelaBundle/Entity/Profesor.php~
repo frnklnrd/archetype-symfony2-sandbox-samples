@@ -1,0 +1,88 @@
+<?php
+
+namespace Application\Bundle\EnterpriseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="profesor")
+ */
+class Profesor extends Persona {
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\Range(min=225, minMessage="Debe ser mayor o igual que {{ limit }}")
+     * @Assert\Type(type="float", message="Debe ser un valor real")
+     */
+    private $salario;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Asignatura")
+     * @ORM\JoinTable(name="asignatura_que_imparte", 
+     *           joinColumns={@ORM\JoinColumn(name="profesor_id", referencedColumnName="id")},
+     *           inverseJoinColumns={@ORM\JoinColumn(name="asignatura_id",referencedColumnName="id")})
+     * @Assert\Count(min=1, max=3, minMessage="Debe impartir al menos {{ limit }} asignatura", maxMessage="Debe impartir a lo sumo {{ limit }} asignaturas")
+     */
+    private $asignaturas;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->asignaturas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set salario
+     *
+     * @param float $salario
+     * @return Profesor
+     */
+    public function setSalario($salario) {
+        $this->salario = $salario;
+
+        return $this;
+    }
+
+    /**
+     * Get salario
+     *
+     * @return float 
+     */
+    public function getSalario() {
+        return $this->salario;
+    }
+
+    /**
+     * Add asignaturas
+     *
+     * @param \Application\Bundle\EnterpriseBundle\Entity\Asignatura $asignaturas
+     * @return Profesor
+     */
+    public function addAsignatura(\Application\Bundle\EnterpriseBundle\Entity\Asignatura $asignaturas) {
+        $this->asignaturas[] = $asignaturas;
+
+        return $this;
+    }
+
+    /**
+     * Remove asignaturas
+     *
+     * @param \Application\Bundle\EnterpriseBundle\Entity\Asignatura $asignaturas
+     */
+    public function removeAsignatura(\Application\Bundle\EnterpriseBundle\Entity\Asignatura $asignaturas) {
+        $this->asignaturas->removeElement($asignaturas);
+    }
+
+    /**
+     * Get asignaturas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAsignaturas() {
+        return $this->asignaturas;
+    }
+
+}

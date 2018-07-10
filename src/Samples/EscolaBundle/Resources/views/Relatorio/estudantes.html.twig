@@ -1,0 +1,40 @@
+{% extends "SonataAdminBundle:Core:dashboard.html.twig" %}
+
+{% block title %}Relatorio de Estudantes{% endblock %}
+
+{% block content %}
+
+<div class="box box-primary">
+	<div class="box-body row">
+		<h3 class="col-md-7 pull-left">Relatorio de Estudantes e Pesquisas</h3>
+		<div class="col-md-2 pull-right" style="margin-top: 21px;">
+		</div> 
+    </div>  		
+	</div>
+</div>
+
+<div class="box box-primary" style="margin-bottom: 100px;">
+<div class="box-body table-responsive no-padding">
+
+<table class="table table-bordered table-hover table-striped sonata-ba-list">
+<thead>
+    <th>No</th>
+    <th>Nome</th>
+    <th>Curso</th>
+    <th>Pesquisas</th>
+</thead>
+<tbody>
+    {% for estudante in result %}
+    <tr>
+        <td style="text-align: center;">{{loop.index}}</td>
+        <td>{{estudante.nome}}</td>
+        <td>{{estudante.curso}}</td>
+        <td>{{estudante.quantidade_pesquisas}}</td>
+    </tr>
+    {% endfor%}
+</tbody>
+</table>
+
+</div>
+</div>
+{% endblock %}

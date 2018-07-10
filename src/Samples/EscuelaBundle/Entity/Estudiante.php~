@@ -1,0 +1,55 @@
+<?php
+
+namespace Application\Bundle\EnterpriseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="estudiante")
+ */
+class Estudiante extends Persona {
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     * @Assert\Range(min=1, max=12, minMessage="Debe ser mayor o igual que {{ limit }}", maxMessage="Debe ser menor o igual que {{ limit }}", invalidMessage="Debe ser un número entre 1 y 12")
+     * @Assert\Type(type="integer", message="Debe ser un valor entero")
+     */
+    private $grado;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Asignatura")
+     * @ORM\JoinTable(name="curso_recibido", 
+     *           joinColumns={@ORM\JoinColumn(name="estudiante_id", referencedColumnName="id")},
+     *           inverseJoinColumns={@ORM\JoinColumn(name="asignatura_id",referencedColumnName="id")})
+     */
+    private $cursos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CursoRecibido", mappedBy="estudiante")
+     */
+    private $notas;
+
+    /**
+     * Set grado
+     *
+     * @param integer $grado
+     * @return Estudiante
+     */
+    public function setGrado($grado) {
+        $this->grado = $grado;
+
+        return $this;
+    }
+
+    /**
+     * Get grado
+     *
+     * @return integer 
+     */
+    public function getGrado() {
+        return $this->grado;
+    }
+
+}

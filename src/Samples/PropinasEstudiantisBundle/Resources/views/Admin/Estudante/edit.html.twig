@@ -1,0 +1,29 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+
+{% block stylesheets %}
+{{ parent() }}
+	<!-- poner css de datetime en portugues -->
+	
+    <link href="{{asset('assets/highslide/highslide.css')}}" rel="stylesheet" />
+    <style>
+        .sonata-bc .navbar-fixed-top, .sonata-bc .navbar-fixed-bottom
+        {
+            z-index: 111;
+        }
+    </style>    
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{asset('assets/jquery-ui/i18n/jquery.ui.datepicker-pt.js')}}"></script>
+<script type="text/javascript">
+
+$(function(){
+	$('#{{form.pagamento.vars.id}}').addClass("row row-fluid");   
+    $('#{{form.pagamento.vars.id}} .form-group').addClass("col-md-6");
+    $('#{{form.pagamento.vars.id}} .form-group').append("<hr>");
+
+});
+
+</script>
+{% endblock %}

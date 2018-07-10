@@ -1,0 +1,244 @@
+{% extends "SonataAdminBundle:Core:dashboard.html.twig" %}
+
+{% block title %}Relatorio con Gráficas{% endblock %}
+
+{% block content%}
+
+<div class="box box-primary">
+	<div class="box-body row">
+		<h3 class="col-md-7 pull-left">Relatorio de Cursos e Estudantes</h3>
+    </div>  		
+	</div>
+</div>
+
+<div class="box box-primary">
+	<div class="box-body">
+
+<ul class="nav nav-tabs" id="myGraphicsTab">
+    <li class="active"><a href="#tab-chart-1">Gráfica de Barras</a></li>
+    <li><a href="#tab-chart-2">Gráfica de Colunas</a></li>
+    <li><a href="#tab-chart-3">Gráfica de Bolo</a></li>
+    <li><a href="#tab-chart-4">Gráfica de Linha</a></li>
+</ul>
+
+<div class="tab-content" style="text-align: center;" id="myGraphicsTabBody">
+
+    <div class="tab-pane active" id="tab-chart-1">
+        <div id="container-chart-column-1" style="width:800px; height: 400px; margin: 0 auto"></div>
+    </div>
+    <div class="tab-pane" id="tab-chart-2">
+        <div id="container-chart-column-2" style="width:800px; height: 400px; margin: 0 auto"></div>
+    </div>
+    <div class="tab-pane" id="tab-chart-3">
+        <div id="container-chart-pie-1" style="width:800px; height: 400px; margin: 0 auto"></div>
+    </div>
+    <div class="tab-pane" id="tab-chart-4">
+        <div id="container-chart-line-1" style="width:800px; height: 400px; margin: 0 auto"></div>
+    </div>
+</div>
+
+	</div>
+</div>
+{% endblock %}
+
+{% block javascripts%}
+{{ parent()}}
+<script src="{{ asset('bundles/samplesindex/vendor/highcharts/js/highcharts.js') }}"></script>
+<script type="text/javascript">
+            $(function() {
+
+            $('#myGraphicsTab a').click(function (e) {
+					e.preventDefault();
+					
+					$('#myGraphicsTab a').parent().removeClass("active");
+					$(this).parent().addClass('active');
+					
+					$('#myGraphicsTabBody div.tab-pane').removeClass("active");
+					$($(this).attr("href")).addClass('active');
+                    
+					//$(this).tab('show');
+            });
+
+            $('#container-chart-column-1').highcharts({
+            chart: {
+            type: 'bar'
+            },
+                    title: {
+                    text: 'Cursos e Estudantes'
+                    },
+                    xAxis: {
+                    categories: [
+                    {% for curso in result %}
+                    '{{curso.curso}}',
+                    {% endfor%}
+                    ],
+                            title: {
+                            text: 'Cursos'
+                            }
+                    },
+                    yAxis: {
+                    min: 0,
+                            title: {
+                            text: 'Estudantes por curso'
+                            }
+                    },
+                    tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                    },
+                    plotOptions: {
+                    column: {
+                    pointPadding: 0.2,
+                            borderWidth: 0
+                    }
+                    },
+                    series: [{
+                    name: 'Estudantes',
+                            data: [
+                                {% for curso in result %}
+                                    {{curso.quantidade_estudantes}},
+                                {% endfor%}
+                            ]
+                    }]
+            });
+            //---------------------------------------------
+
+                    $('#container-chart-column-2').highcharts({
+            chart: {
+            type: 'column'
+            },
+                    title: {
+                    text: 'Estudantes por Curso'
+                    },
+                    xAxis: {
+                    categories: [
+                            'Estudantes'
+                    ]
+                    },
+                    yAxis: {
+                    min: 0,
+                            title: {
+                            text: 'Quantidade'
+                            }
+                    },
+                    tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                    },
+                    plotOptions: {
+                    column: {
+                    pointPadding: 0.2,
+                            borderWidth: 0
+                    }
+                    },
+                    series: [
+                     {% for curso in result %}
+                    {
+                    name: '{{curso.curso}}',
+                            data: [
+                                {{curso.quantidade_estudantes}}
+                            ]
+                    },
+                    {% endfor%}
+                    ]
+            });
+            // -----------------------------------------------------------------
+
+            $('#container-chart-pie-1').highcharts({
+            chart: {
+            plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+            },
+                    title: {
+                    text: '% de Estudantes por Curso'
+                    },
+                    tooltip: {
+                    pointFormat: 'Existem {point.y} estudantes no curso {point.name},<br>o que representa o <b>{point.percentage:.1f} %</b> dos {point.total} em total.',
+                            percentageDecimals: 1
+                    },
+                    plotOptions: {
+                    pie: {
+                    allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                            enabled: true,
+                                    color: '#000000',
+                                    connectorColor: '#000000',
+                                    formatter: function() {
+                                    return '<b>' + this.point.name + '</b>: ' + this.percentage.toFixed(1) + ' %';
+                                    }
+                            },
+                            showInLegend: true
+                    }
+                    },
+                    series: [
+                    {
+                    type: 'pie',
+                            data: [
+                                    {% for curso in result %}
+										['{{curso.curso}}',{{curso.quantidade_estudantes}}],
+                                    {% endfor%}
+                            ]
+                    }]
+            });
+                    //-------------------------------------------
+
+            $('#container-chart-line-1').highcharts({
+            chart: {
+            type: 'line'
+            },
+                    title: {
+                    text: 'Cursos e Estudantes'
+                    },
+                    xAxis: {
+                    categories: [
+                    {% for curso in result %}
+                    '{{curso.curso}}',
+                    {% endfor%}
+                    ],
+                            title: {
+                            text: 'Cursos'
+                            }
+                    },
+                    yAxis: {
+                    min: 0,
+                            title: {
+                            text: 'Estudantes por curso'
+                            }
+                    },
+                    tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                    },
+                    plotOptions: {
+                    column: {
+                    pointPadding: 0.2,
+                            borderWidth: 0
+                    }
+                    },
+                    series: [{
+                    name: 'Estudantes',
+                            data: [
+                                {% for curso in result %}
+                                    {{curso.quantidade_estudantes}},
+                                {% endfor%}
+                            ]
+                    }]
+            });
+                    //-------------------------------------------
+            });
+</script>
+{% endblock%}

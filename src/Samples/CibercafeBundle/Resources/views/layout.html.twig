@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% block head %}
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta name="description" content="">
+          <meta name="author" content="">
+          <title>cibercafé - {% block title %}Inicio{% endblock %}</title>
+
+          <!-- Le styles -->
+          <!--
+          <link href="{# asset('bundles/sonatajquery/themes/flick/jquery-ui-1.8.16.custom.css') #}" rel="stylesheet">
+          <link href="{# asset('bundles/samplesindex/vendor/jquery/css/smoothness/jquery-ui-1.9.0.custom.min.css') #}" rel="stylesheet">
+          -->
+          <link href="{{ asset('bundles/samplesindex/vendor/jquery-ui/themes/base/jquery-ui.css') }}" rel="stylesheet">
+          <link href="{{ asset('bundles/samplesindex/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+          <link href="{{ asset('bundles/samplesindex/vendor/bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet">
+          <link href="{{ asset('bundles/samplesindex/vendor/bootstrap/js/google-code-prettify/prettify.css') }}" rel="stylesheet">
+          
+
+          <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+          <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+          <![endif]-->
+
+          <!-- Le fav and touch icons -->
+          <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+
+      {% block add_css %}{% endblock %}
+      {% endblock %}  
+   </head>
+
+   <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+   <!-- Subhead
+   ================================================== -->
+   <header class="jumbotron subhead" id="overview" style="padding:15px;">
+       <div class="container">
+       {% block banner %}
+            <div class="pull-left">
+            {% block banner_left %}
+                    <div class="span10">
+                        <h1 class="span3">Cibercafé</h1>
+                        <p class="lead span6">Prestación de Servicios de Navegación, Impresión,</p>
+                        <p class="lead span6">Quemado de discos CD/DVD, Cafetería y otros</p>
+                    </div>
+            {% endblock %}
+            </div>
+            <div class="pull-right">
+            {% block banner_right %}
+                    
+                 {{ include('SamplesCibercafeBundle:blocks:header-menu.html.twig') }} 
+                    
+            {% endblock %}
+            </div>
+        {% endblock %}
+        </div>
+    </header>
+
+    <div id="flash-messages" style="margin-top:5px;">
+        {% block flash_messages %}
+            {% for notice_level in ['success','error','info', 'warning'] %}
+                {% for flash in app.session.flashbag.get(notice_level) %}
+
+                <div class="alert alert-{{ notice_level }}" style="margin-bottom: 5px;line-height: 15px;">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>{{ notice_level | upper() }}: </strong> {{ flash|trans([], 'SamplesCibercafeBundle') }}
+                </div>	
+                {% endfor %}
+            {% endfor %}
+        {% endblock %}
+     </div>
+   
+   <!-- Docs nav
+    ================================================== -->
+    <div class="container">
+        <div class="row" style="margin-top: 15px; min-height:385px;">
+                    
+        <!-- Main Content
+        ================================================== -->
+
+       {% block content %}
+            <div class="span3 bs-docs-sidebar">
+                 <!-- Left Content
+                 ================================================== -->
+                 {% block content_left %}
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                      {{ include('SamplesCibercafeBundle:blocks:left-menu.html.twig') }}
+                    {% else %}
+                        <img src="{{ asset('img/cibercafe/logo-mouse.png') }}">
+                    {% endif %}
+                 {% endblock %}
+             </div>
+             <div class="span9">
+                 <!-- Right Content
+                 ================================================== -->
+                 {% block content_center%} {% endblock %}
+             </div>
+        {% endblock %}
+
+        </div>
+    </div>
+
+   <!-- Ajax Loader container
+    ================================================== -->
+   
+   <div id="ajax-loader-container" class="hide" style="z-index: 1000000;"> 
+       <div style="width:380px; height: 70px; margin-top: 275px; margin-left: auto; margin-right:auto">
+           <div class="progress progress-striped active">
+               <div class="bar" style="width: 100%;"></div>
+			  
+           </div>
+		    <img src="{{ asset('img/ajax/wait.gif')}}">
+       </div>
+   </div>
+   
+   <!-- Footer
+    ================================================== -->
+    <!--
+    <footer class="footer" style="background: none repeat scroll 0 0 #323843;">
+        <div class="container">
+        {% block footer %}
+            <div style="height: 75px;">
+                <div class="span7 pull-left" style="margin-left: 75px;">
+                    <p style="color: #ffffff">Cibercafé  &nbsp;&copy;&nbsp;2013</p>
+                </div>
+            </div>
+        {% endblock %}
+        </div>
+    </footer>
+    -->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block javascript %}
+
+    <!--
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="{# asset('bundles/sonatajquery/jquery-1.8.0.js') #}"></script>
+    <script src="{# asset('bundles/sonatajquery/jquery-ui-1.8.23.js') #}"></script>
+    -->
+    
+    <script src="{{ asset('bundles/samplesindex/vendor/jquery/jquery-1.9.1.min.js') }}"></script>
+    <script src="{{ asset('bundles/samplesindex/vendor/jquery-ui/jquery-ui-1.10.2.min.js') }}"></script>
+
+    <script src="{{ asset('bundles/samplesindex/vendor/jquery/jquery-validate.min.js') }}"></script>
+    
+    <script src="{{ asset('bundles/samplesindex/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/samplesindex/vendor/bootstrap/js/holder/holder.js') }}"></script>
+    <script src="{{ asset('bundles/samplesindex/vendor/bootstrap/js/google-code-prettify/prettify.js') }}"></script>
+    
+    <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>    
+    
+    <script>
+        $('.bs-docs-sidenav').affix({
+            offset: {
+                top: 175,
+                x: 60
+              }
+           }) ;
+    </script>
+    {% block add_javascript %}{% endblock %}
+    {% endblock %}
+     </body>
+</html>

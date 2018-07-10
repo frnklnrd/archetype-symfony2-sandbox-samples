@@ -1,0 +1,17 @@
+sonata_admin:
+    dashboard:
+        groups:
+            samples_farmacia:
+                label: Farmacia e Medicamentos
+                label_catalogue: SamplesFarmaciaBundle
+                icon: '<i class="fa fa-ambulance"></i>'
+                items:
+                    - samples.farmacia.admin.funcionario
+                    - samples.farmacia.admin.movimento
+                    - samples.farmacia.admin.tipo_movimento
+                    - samples.farmacia.admin.medicamento
+                    - samples.farmacia.admin.principio_activo
+                    - samples.farmacia.admin.forma
+                    - samples.farmacia.admin.unidade_medida
+                    - samples.farmacia.admin.dispositivo_medico
+                    - samples.farmacia.admin.classificacao

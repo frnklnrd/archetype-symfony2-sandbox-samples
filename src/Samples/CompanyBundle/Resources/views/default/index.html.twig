@@ -1,0 +1,56 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Application{% endblock title %}
+
+
+{%block header %}
+{%endblock header %}
+
+{% block content %}
+    {% raw %}
+        <div ng-app="application" ng-controller="appCtrl as $app" ng-strict-di>
+
+            <div class="container" style="min-height:400px;">
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <nav ng-controller="leftNavBarCtrl as $nav">
+                            <div class="list-group">
+                                <div class="list-group-item list-group-item-heading">
+                                    <div class="row">
+                                        <div class="col-lg-12">Options Menu</div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item list-group-item-heading">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <a href="#/login" ng-click="$parent.login()">Login</a> / 
+                                            <a href="#/token-refresh" ng-click="$parent.token_refresh()">Refresh</a> / 
+                                            <a href="#/logout" ng-click="$parent.logout()">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="list-group-item" ng-class="{active: $nav.current('/')}" href="#/">Index</a>
+                                <a class="list-group-item" ng-show="$parent.isAuthenticated" ng-class="{active: $nav.current('/companies')}" href="#/companies">Companies List</a>
+                                <a class="list-group-item {{$parent.isAuthenticated?'':'hide'}}" ng-class="{active: $nav.current('/workers')}" href="#/workers">Workers List</a>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-lg-9">
+                        <div ng-view></div>
+                    </div>
+                </div>
+
+
+            </div>
+            <ajax-loader show="$parent.ajaxloader.loading" message="$parent.ajaxloader.message"></ajax-loader>
+        </div>
+    </div>
+{% endraw %}
+{% endblock content %}
+
+{% block javascripts %}
+    {% javascripts '@SamplesCompanyBundle/Resources/public/js/*' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}

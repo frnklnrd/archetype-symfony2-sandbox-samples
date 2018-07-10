@@ -1,0 +1,67 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Reporte Lenguajes{% endblock %}
+
+{% block content%}
+
+<div class="nav navbar-inner">
+    <h2 class="span6 pull-left">Lenguajes de Programacion</h2>
+    <div class="span2 pull-right" style="margin-top: 21px;">
+        PDF: 
+        <a href="{{ path('samples_programadores_reporte_ejemplo_2_pdf_view')}}"
+           onclick="window.open(this.href, '_pdf', 'toolbar=no,menubar=no,scrollbars=yes,location=no');
+                     return false;">
+            <i class="icon-file"></i> Ver</a>
+        <a href="{{ path('samples_programadores_reporte_ejemplo_2_pdf_download')}}" target="_blank">
+            <i class="icon-download"></i> Descargar</a>
+    </div>    
+</div>
+
+<table class="table table-bordered table-hover table-striped">
+<thead>
+    <th>No</th>
+    <th>NOMBRE</th>
+    <th>Programadores que lo conocen</th>
+    <th>Proyectos en los que se ha utilizado</th>
+</thead>
+<tbody>
+    {% for lenguaje in lenguajes %}
+    <tr>
+        <td style="text-align: center;">{{loop.index}}</td>
+        <td>{{lenguaje.NOMBRE_LENGUAJE}}</td>
+        <td style="text-align: center;">{{lenguaje.CANTIDAD_PROGRAMADORES}}</td>
+        <td style="text-align: center;">{{lenguaje.CANTIDAD_PROYECTOS}}</td>
+    </tr>
+    {% endfor%}
+</tbody>
+</table>
+<hr>
+<div class="nav navbar-inner">
+    <h2 class="span12 pull-left">Listado de Programadores</h2>   
+</div>
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Foto</th>
+            <th>CI</th>
+            <th>Nombre</th>
+            <th>Certificado</th>
+            <th>Sistema</th>
+            <th>Lenguajes</th>
+        </tr>
+    </thead>
+    <tbody>{% for entity in programadores %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><img class="img-polaroid" src="{{ asset(entity.webPath?entity.webPath:asset('/bundles/samplesindex/img/no-foto.png'))}}" alt="" title="" width="50px" height="40px"/></td>
+            <td>{{ entity.ci }}</td>
+            <td>{{ entity.nombrecompleto }}</td>
+            <td>{% if entity.certificado==1 %}Sí{% else%}No{% endif%}</td>
+            <td>{{entity.sistemaoperativo}}</td>
+            <td>{{ entity.lenguajesprogramacion | join(", ") }}</td>
+        </tr>{% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

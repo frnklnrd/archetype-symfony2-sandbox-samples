@@ -1,0 +1,234 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Adicionar Usuarios{% endblock %}
+
+{% block content_center %}
+<div class="nav navbar navbar-inner">
+    <h3>
+        Adicionar Usuario Asociado o Eventual     
+    </h3>
+</div>
+<h3 class="span9">
+    <span class="span4">Seleccione el tipo de usuario</span>
+    <label class="span2" style="width:115px;margin-top:7px;"><input type="radio" name="rd_tipo_usuario" id="ra_tipo_usuario_asociado" checked="checked"/> Asociado</label>
+    <label class="span2" style="width:115px;margin-top:7px;"><input type="radio" name="rd_tipo_usuario" id="ra_tipo_usuario_eventual"/> Eventual</label>
+</h3>
+<div>
+<form id="form-add-usuario-asociado" class="form-horizontal" action="{{ path('crud_usuario_asociado_eventual_new_create') }}" method="post" {{ form_enctype(form_asociado) }}>
+<div class="span4">    
+    <div class="control-group">
+        <label class="control-label" for="{{ form_asociado.nombre.vars.id }}">{{ form_label(form_asociado.nombre) }}</label>
+        <div class="controls">
+            {{ form_widget(form_asociado.nombre) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="{{ form_asociado.apellidos.vars.id }}">{{ form_label(form_asociado.apellidos) }}</label>
+        <div class="controls">
+            {{ form_widget(form_asociado.apellidos) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="{{ form_asociado.num_PC_asignada.vars.id }}">{{ form_label(form_asociado.num_PC_asignada) }}</label>
+        <div class="controls">
+            {{ form_widget(form_asociado.num_PC_asignada) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="{{ form_asociado.num_tarjeta_credito.vars.id }}">{{ form_label(form_asociado.num_tarjeta_credito) }}</label>
+        <div class="controls">
+            {{ form_widget(form_asociado.num_tarjeta_credito) }}
+        </div>
+    </div>
+</div>
+<div class="span4">
+    <div class="control-group">
+        <label class="control-label" for="{{ form_asociado.carnet_identidad.vars.id }}">{{ form_label(form_asociado.carnet_identidad) }}</label>
+        <div class="controls">
+            {{ form_widget(form_asociado.carnet_identidad) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="{{ form_asociado.cant_annos.vars.id }}">{{ form_label(form_asociado.cant_annos) }}</label>
+        <div class="controls">
+            {{ form_widget(form_asociado.cant_annos) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="{{ form_asociado.categoria.vars.id }}">{{ form_label(form_asociado.categoria) }}</label>
+        <div class="controls">
+            {{ form_widget(form_asociado.categoria) }}
+        </div>
+    </div>
+        <div class="hide">
+         {{ form_widget(form_asociado) }}
+                <input type="hidden" name="tipo_usuario" value="asociado"/>
+        </div> 
+</div>
+    <div class="control-group span8 pull-right">
+        <div class="controls">
+            <a href="{{ path('crud_usuario_asociado_eventual') }}">
+                    <button type="button" class="btn">Cancelar</button>
+                </a>
+            <button type="reset" class="btn btn-info" id="btn-reset-form-asociado">Limpiar</button>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+        </div>
+    </div>
+    </div>
+</form>
+
+<form id="form-add-usuario-eventual" class="form-horizontal hide" action="{{ path('crud_usuario_asociado_eventual_new_create') }}" method="post" {{ form_enctype(form_eventual) }}>
+<div class="span4">  
+    <div class="control-group">
+        <label class="control-label" for="{{ form_eventual.nombre.vars.id }}">{{ form_label(form_eventual.nombre) }}</label>
+        <div class="controls">
+            {{ form_widget(form_eventual.nombre) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="{{ form_eventual.apellidos.vars.id }}">{{ form_label(form_eventual.apellidos) }}</label>
+        <div class="controls">
+            {{ form_widget(form_eventual.apellidos) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="{{ form_eventual.num_PC_asignada.vars.id }}">{{ form_label(form_eventual.num_PC_asignada) }}</label>
+        <div class="controls">
+            {{ form_widget(form_eventual.num_PC_asignada) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="{{ form_eventual.num_tarjeta_credito.vars.id }}">{{ form_label(form_eventual.num_tarjeta_credito) }}</label>
+        <div class="controls">
+            {{ form_widget(form_eventual.num_tarjeta_credito) }}
+        </div>
+    </div>
+</div>  
+<div class="span4">  
+    <div class="control-group">
+        <label class="control-label" for="{{ form_eventual.carnet_identidad.vars.id }}">{{ form_label(form_eventual.carnet_identidad) }}</label>
+        <div class="controls">
+            {{ form_widget(form_eventual.carnet_identidad) }}
+        </div>
+    </div>
+        <div class="hide">
+         {{ form_widget(form_eventual) }}
+          <input type="hidden" name="tipo_usuario" value="eventual"/>
+        </div>  
+</div>  
+    <div class="control-group span8 pull-right">
+        <div class="controls">
+            <a href="{{ path('crud_usuario_asociado_eventual') }}">
+                    <button type="button" class="btn">Cancelar</button>
+                </a>
+                <button type="reset" class="btn btn-info" id="btn-reset-form-eventual">Limpiar</button>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+        </div>
+    </div>
+        <div class="control-group">
+            
+        </div>
+    </div>
+</form>
+
+</div>
+{% endblock %}
+
+{% block add_javascript %}
+
+<script>
+   
+$(function(){
+   
+     //Indica al menu que se ponga activo(azul)
+     $('#left-menu-9').addClass('active');
+
+     $('#ra_tipo_usuario_asociado').click(function()
+     {
+         $('#form-add-usuario-eventual').hide(); 
+         $('#form-add-usuario-asociado').show();
+          // se podría poner .hide('fade'); .show('fade');
+     });
+     
+     $('#ra_tipo_usuario_eventual').click(function()
+     {
+         $('#form-add-usuario-asociado').hide();
+         $('#form-add-usuario-eventual').show();
+          // se podría poner .hide('fade'); .show('fade');
+     });
+     
+     $('#btn-reset-form-asociado').click(function()
+     {
+        // $('#form-add-usuario-eventual').reset();
+         // $('#form-add-usuario-asociado').reset();
+         document.getElementById('form-add-usuario-eventual').reset();
+         document.getElementById('form-add-usuario-asociado').reset();
+     });
+     
+     $('#btn-reset-form-eventual').click(function()
+     {
+         document.getElementById('form-add-usuario-eventual').reset();
+         document.getElementById('form-add-usuario-asociado').reset();
+     });   
+     
+     // cuando escriba en un campo de uno de los formularios,
+     // en el campo con el mismo nombre en el otro formulario
+     // tendran el mismo valor, es decir, se escribira lo mismo.
+     
+     $('#{{ form_asociado.nombre.vars.id }}').blur(function()
+     {
+          $('#{{ form_eventual.nombre.vars.id }}').val($(this).val());
+     }); 
+     
+     $('#{{ form_eventual.nombre.vars.id }}').blur(function()
+     {
+          $('#{{ form_asociado.nombre.vars.id }}').val($(this).val());
+     });
+     
+     $('#{{ form_asociado.apellidos.vars.id }}').blur(function()
+     {
+          $('#{{ form_eventual.apellidos.vars.id }}').val($(this).val());
+     }); 
+     
+     $('#{{ form_eventual.apellidos.vars.id }}').blur(function()
+     {
+          $('#{{ form_asociado.apellidos.vars.id }}').val($(this).val());
+     });
+     
+     $('#{{ form_asociado.num_PC_asignada.vars.id }}').blur(function()
+     {
+          $('#{{ form_eventual.num_PC_asignada.vars.id }}').val($(this).val());
+     }); 
+     
+     $('#{{ form_eventual.num_PC_asignada.vars.id }}').blur(function()
+     {
+          $('#{{ form_asociado.num_PC_asignada.vars.id }}').val($(this).val());
+     });
+     
+     $('#{{ form_asociado.num_tarjeta_credito.vars.id }}').blur(function()
+     {
+          $('#{{ form_eventual.num_tarjeta_credito.vars.id }}').val($(this).val());
+     }); 
+     
+     $('#{{ form_eventual.num_tarjeta_credito.vars.id }}').blur(function()
+     {
+          $('#{{ form_asociado.num_tarjeta_credito.vars.id }}').val($(this).val());
+     });
+     
+     $('#{{ form_asociado.carnet_identidad.vars.id }}').blur(function()
+     {
+          $('#{{ form_eventual.carnet_identidad.vars.id }}').val($(this).val());
+     }); 
+     
+     $('#{{ form_eventual.carnet_identidad.vars.id }}').blur(function()
+     {
+          $('#{{ form_asociado.carnet_identidad.vars.id }}').val($(this).val());
+     });
+     
+     
+});
+   
+   
+           
+</script>     
+{% endblock %}

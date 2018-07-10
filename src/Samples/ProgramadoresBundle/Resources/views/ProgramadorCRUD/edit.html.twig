@@ -1,0 +1,184 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Ejemplos CRUD{% endblock %}
+
+{% block stylesheets%}
+<style>
+    input[name="programador[sexo]"],
+    input[name="programador[lenguajes_programacion][]"],
+    label[for="programador_certificado"]
+    {
+        float:left;
+        margin-right: 5px;
+    }
+
+</style>
+{% endblock %}
+
+{% block content%}
+
+<div class="nav navbar-inner">
+    <h2 class="span5 pull-left">Editar Programador</h2>
+    <form class="pull-right" style="margin-top: 15px" action="{{ path('samples_programadores_formularios_crud_programador_delete', { 'id': entity.id }) }}" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+        <button type="submit" class="btn btn-danger"><i class="icon-remove"></i> Eliminar</button>
+    </form>    
+    <a  class="btn pull-right" style="margin-top: 15px; margin-right: 5px;" href="{{ path('samples_programadores_formularios_crud_programador') }}">
+        <i class="icon-arrow-left"></i> Volver
+    </a>      
+</div>
+
+<form action="{{ path('samples_programadores_formularios_crud_programador_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <input type="hidden" name="_method" value="PUT" />
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.ci) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.ci) }} <div class="error">{{ form_errors(edit_form.ci) }}</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.nombre) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.nombre) }} <div class="error">{{ form_errors(edit_form.nombre) }}</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.apellido1) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.apellido1) }} <div class="error">{{ form_errors(edit_form.apellido1) }}</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.apellido2) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.apellido2) }} <div class="error">{{ form_errors(edit_form.apellido2) }}</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.fecha_nacimiento) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.fecha_nacimiento) }} <div class="error">{{ form_errors(edit_form.fecha_nacimiento) }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.sexo) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.sexo) }} <div class="error">{{ form_errors(edit_form.sexo) }}</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.certificado) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.certificado) }} <div class="error">{{ form_errors(edit_form.certificado) }}</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.sistema_operativo) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.sistema_operativo) }} <div class="error">{{ form_errors(edit_form.sistema_operativo) }}</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.lenguajes_programacion) }}</label>
+            <div class="controls">
+            {{ form_widget(edit_form.lenguajes_programacion) }} <div class="error">{{ form_errors(edit_form.lenguajes_programacion) }}</div>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label">{{ form_label(edit_form.foto_file) }}</label>
+            <div class="controls">
+                <img class="img-polaroid pull-left" src="{{ asset(entity.webPath?entity.webPath:('/bundles/samplesindex/img/no-foto.png'))}}" alt="" title="" width="50px" height="40px"/>    
+                <div class="span3">{{ form_widget(edit_form.foto_file) }}</div> <div class="error">{{ form_errors(edit_form.foto_file) }}</div>
+            </div>
+        </div>     
+        
+    </div>
+
+    {{ form_widget(edit_form) }}
+
+    <div class="control-group pull-right">
+        <div class="controls">
+            <button type="submit" class="btn btn-primary"><i class="icon-edit"></i> Editar</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+
+    $(function() {
+
+        // permite solo numeros en campos de texto CI
+
+        $('#{{edit_form.ci.vars.id}}').keypress(function(event)
+        {
+            var key = window.Event ? event.which : event.keyCode; // alert(key);
+
+            return (key <= 13 || (key >= 37 && key <= 40) || (key >= 48 && key <= 57) || key == 46);
+        });
+
+        // campo fecha se convierte en datepicker
+
+        $('#{{edit_form.fecha_nacimiento.vars.id}}').datepicker({dateFormat: 'yy-mm-dd'});
+
+        // validando el formulario
+
+        $('form').submit(function(event) {
+
+            if (isNaN($('#{{edit_form.ci.vars.id}}').val()) || $('#{{edit_form.ci.vars.id}}').val().length != 11)
+            {
+                // evitar el submit del formulario
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                alert('El campo [{{edit_form.ci.vars.label}}] debe estar formado por 11 números');
+
+                $('#{{edit_form.ci.vars.id}}').focus();
+            }
+
+            else if ($('#{{edit_form.sistema_operativo.vars.id}}').val() == "") // si no es un numero
+            {
+                // evitar el submit del formulario
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                alert('El campo [{{edit_form.sistema_operativo.vars.label}}] debe ser seleccionado');
+
+                $('#{{edit_form.sistema_operativo.vars.id}}').focus();
+            }
+
+            else if ($('#{{edit_form.lenguajes_programacion.vars.id}} > input:checked').length < 1) // si no es un numero
+            {
+                // evitar el submit del formulario
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                alert('El campo [{{edit_form.lenguajes_programacion.vars.label}}] debe ser seleccionado');
+
+                $('#{{edit_form.lenguajes_programacion.vars.id}}').focus();
+            }
+
+        });
+
+    });
+
+</script>
+{% endblock %}
+

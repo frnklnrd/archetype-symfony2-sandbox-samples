@@ -1,0 +1,25 @@
+sonata_admin:
+    dashboard:
+        groups:
+            samples_escola:
+                label: 'Escola'
+                label_catalogue: SamplesEscolaBundle
+                icon: '<i class="fa fa-institution"></i>'
+                items:
+                    - samples.escola.admin.estudante
+                    - route:        samples_escola_relatorio_estudantes
+                      label:        Estudantes e Pesquisas
+                    - route:        samples_escola_relatorio_cursos_graficos
+                      label:        Cursos e Estudantes
+
+                    - samples.escola.admin.curso
+                    - samples.escola.admin.turma
+                    - samples.escola.admin.ano
+                    - samples.escola.admin.disciplina
+
+                    - samples.escola.admin.provincia
+                    - samples.escola.admin.municipio
+
+                    - samples.escola.admin.evento
+                    - samples.escola.admin.tipo_pesquisa
+            

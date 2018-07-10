@@ -1,0 +1,19 @@
+sonata_admin:
+    dashboard:
+        groups:
+            samples_avaliacao_desempenho:
+                label: Docentes e Avaliações
+                label_catalogue: SamplesAvaliacaoDesempenhoBundle
+                icon: '<i class="fa fa-mortar-board"></i>'
+                items:
+                    - samples.avaliacaodesempenho.admin.pessoal
+                    - samples.avaliacaodesempenho.admin.avaliacao_desempenho
+                    - samples.avaliacaodesempenho.admin.ano_lectivo
+                    - samples.avaliacaodesempenho.admin.categoria_profissional
+                    - samples.avaliacaodesempenho.admin.departamento
+                    - samples.avaliacaodesempenho.admin.disciplina
+                    - samples.avaliacaodesempenho.admin.grau_academico
+                    - samples.avaliacaodesempenho.admin.tipo_actividade
+                    - samples.avaliacaodesempenho.admin.tipo_decisao
+                    - samples.avaliacaodesempenho.admin.tipo_publicacao
+   

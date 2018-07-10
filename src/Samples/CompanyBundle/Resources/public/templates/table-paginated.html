@@ -1,0 +1,35 @@
+<table class="table table-bordered table-hover table-responsive table-condensed table-striped">
+    <caption>
+        <div class="col-lg-6">
+            Page: {{$ctrl.page}}, show from {{($ctrl.page - 1) * $ctrl.limit + 1}} to {{$ctrl.page * $ctrl.limit}} of {{$ctrl.total}} elements
+        </div>
+        <div class="col-lg-6 text-right" style="padding-right: 0px;">
+            <button type="button" ng-click="$ctrl.load($ctrl.links.first.href)" class="btn btn-default">first</button> 
+            <button type="button" ng-click="$ctrl.load($ctrl.links.previous.href)" class="btn btn-default">previous</button> 
+            <button type="button" ng-click="$ctrl.load($ctrl.links.self.href)" class="btn btn-default">current</button> 
+            <button type="button" ng-click="$ctrl.load($ctrl.links.next.href)" class="btn btn-default">next</button> 
+            <button type="button" ng-click="$ctrl.load($ctrl.links.last.href)" class="btn btn-default">last</button> 
+        </div>
+    </caption>
+    <thead>
+        <tr>
+            <th style="width: 25px; text-align: center;">#</th>
+            <th ng-repeat="field in $ctrl.fields_descriptions">{{field.title}}</th>
+            <th style="width: 150px; text-align: center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in $ctrl.items">
+            <td style="width: 25px; text-align: center">{{($ctrl.page - 1) * $ctrl.limit + 1 + $index}}</td>
+            <td ng-repeat="field in $ctrl.fields_descriptions">{{$ctrl.getFieldValue(item, field.name)}}</td>
+            <td style="text-align: center">
+                <a ng-repeat="action in $ctrl.actions_descriptions" 
+                   data-href="#{{ item._links.self.href}}/{{ action.name}}" 
+                   class="btn btn-default" title="{{action.title}}" style="margin-left: 5px;" 
+                   ng-click="$ctrl.actionshandler(action.name, item._links.self.href, $ctrl.load, $ctrl.links.self.href)">
+                    <i class="{{action.icon}}"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>  

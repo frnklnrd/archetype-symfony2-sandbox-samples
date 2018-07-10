@@ -1,0 +1,79 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Listado de Usuarios{% endblock %}
+
+{% block content_center %}
+<div class="nav navbar navbar-inner">
+    <h3>
+        Listado de Usuarios     
+    </h3>
+</div>
+<table class="table table-bordered table-striped table-hover">
+    <caption>
+        <div class="nav navbar navbar-inner">
+            <div class="pull-left span3" style="margin:15px;">
+                Total <strong>{{ paginator.totalItems }}</strong> elementos, mostrando {{ paginator.startPageItem}} al {{ paginator.endPageItem }}
+            </div>
+            <div class="pull-left span2" style="margin:15px;">
+                <a href="{{ path('crud_usuario_asociado_eventual_new_create') }}">
+                    Crear Nuevo Usuario
+                </a>
+            </div>
+            <div class="pagination pagination-right span3 pull-right">
+            {{ simple_paginator_render('crud_usuario_asociado_eventual', null, {
+                                        'routeParams' : {},
+                                        'container_class' : 'simple_paginator',
+                                         'firstPageText'  : '««',
+                                        'firstEnabledClass': 'first',
+                                        'firstDisabledClass': 'disabled',
+                                        'previousPageText': '«',
+                                        'previousEnabledClass': 'left',
+                                        'previousDisabledClass': 'disabled',
+                                        'currentClass': 'active',
+                                        'nextPageText': '»',
+                                        'nextEnabledClass': 'right',
+                                        'nextDisabledClass': 'disabled',
+                                        'lastPageText': '»»',
+                                        'lastEnabledClass': 'last',
+                                        'lastDisabledClass': 'disabled'
+                                })}}
+                </div>            
+            </div>
+        </caption>
+        <thead>
+            <tr style="background-color: #F5F5F5;">
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Num_pc_asignada</th>
+                <th>Num_tarjeta_credito</th>
+                <th>Carnet_identidad</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+	 {% for entity in entities %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ entity.nombre }}</td>
+                    <td>{{ entity.apellidos }}</td>
+                    <td>{{ entity.numPCasignada }}</td>
+                    <td>{{ entity.numtarjetacredito }}</td>
+                    <td>{{ entity.carnetidentidad }}</td>
+                    <td>
+                        <a href="{{ path('crud_usuario_asociado_eventual_show', { 'id': entity.id }) }}">Mostrar</a>
+                        <a href="{{ path('crud_usuario_asociado_eventual_edit', { 'id': entity.id }) }}">Editar</a>
+                    </td>
+                </tr>
+{% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+
+{% block add_javascript %}
+        <script>
+            //Indica al menu que se ponga activo(azul)
+            $('#left-menu-9').addClass('active');
+            </script>     
+{% endblock %}

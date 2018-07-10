@@ -1,0 +1,12 @@
+sonata_admin:
+    dashboard:
+        groups:
+            samples_programadores:
+                label: 'Programadores'
+                label_catalogue: SamplesProgramadoresBundle
+                icon:            '<i class="fa fa-laptop"></i>'
+                items:
+                    - samples.programadores.admin.programador
+                    - samples.programadores.admin.proyecto
+                    - samples.programadores.admin.sistema_operativo
+                    - samples.programadores.admin.lenguaje_programacion

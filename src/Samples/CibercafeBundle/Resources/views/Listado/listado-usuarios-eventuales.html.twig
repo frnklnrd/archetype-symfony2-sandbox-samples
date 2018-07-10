@@ -1,0 +1,74 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Listado de Clientes Eventuales{% endblock %}
+
+{% block content_center %}
+<div class="nav navbar navbar-inner">
+    <h3>
+        Listado de Clientes Eventuales            
+    </h3>
+</div>
+<table class="table table-bordered table-striped table-hover">
+    <caption>
+        <div class="nav navbar navbar-inner">
+            <div class="pull-left span3" style="margin:25px;">
+                Total <strong>{{ paginator.totalItems }}</strong> elementos, mostrando del {{ paginator.startPageItem}} al {{ paginator.endPageItem }}
+            </div>
+            <div class="pagination pagination-right span4">
+            {{ simple_paginator_render('_app_listado_usuarios_eventuales', null, {
+                                        'routeParams' : {},
+                                        'container_class' : 'simple_paginator',
+                                         'firstPageText'  : '««',
+                                        'firstEnabledClass': 'first',
+                                        'firstDisabledClass': 'disabled',
+                                        'previousPageText': '«',
+                                        'previousEnabledClass': 'left',
+                                        'previousDisabledClass': 'disabled',
+                                        'currentClass': 'active',
+                                        'nextPageText': '»',
+                                        'nextEnabledClass': 'right',
+                                        'nextDisabledClass': 'disabled',
+                                        'lastPageText': '»»',
+                                        'lastEnabledClass': 'last',
+                                        'lastDisabledClass': 'disabled'
+                                })}}
+                </div>            
+            </div>
+        </caption>
+        <thead>
+            <tr style="background-color: #F5F5F5;">
+                <th>#</th>
+                <th class="">CI</th>
+                <th class="">Nombre</th>
+                <th class="">Apellidos</th>
+                <th class="">T. crédito</th>
+            </tr>
+        </thead>
+        <tbody>
+	 {% for objeto in listado %}
+                <tr>
+                    <td>{{ paginator.startPageItem + loop.index0 }}</td>
+                    <td>
+                        <span>{{ objeto.carnetidentidad}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.nombre}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.apellidos}}</span>
+                    </td>
+                    <td>
+                        <span>{{ objeto.numtarjetacredito}}</span>
+                    </td>
+                </tr>
+	{% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+
+{% block add_javascript %}
+ <script>
+     $('#left-menu-2').addClass('active');
+</script>     
+{% endblock %}

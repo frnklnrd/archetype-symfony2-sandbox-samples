@@ -1,0 +1,27 @@
+{% extends "SamplesProgramadoresBundle::base.html.twig" %}{#% set code = code(_self) %#}
+
+{% block title %}Ejemplos Formularios{% endblock %}
+
+{% block content%}
+
+<div>
+    <label> Nombre: </label><label>{{ programador.nombre }}</label>
+</div>
+<div>
+    <label> Sexo: </label><label>{% if programador.sexo==1 %}Femenino{% else %}Masculino{% endif%}</label>
+</div>
+<div>
+    <label> Certificado: </label><label>{% if programador.certificado==1 %}Sí{% else %}No{% endif%}</label>
+</div>
+<div>
+    <label> Sistema Preferido: </label><label>{{ programador.sistemaoperativo }}</label>
+</div>
+<div>
+    <label> Lenguajes Conocidos: </label>
+         <ul>
+            {% for lenguaje in programador.lenguajesprogramacion %}
+            <li>{{ lenguaje }}</li>
+             {% endfor%}        
+        </ul>
+</div>
+{% endblock %}

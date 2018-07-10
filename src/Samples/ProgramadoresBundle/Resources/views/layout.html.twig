@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Curso Symfony 2 - {% block title %}Inicio{% endblock %}</title>
+
+        <!-- Le styles -->
+
+        <link href="{{ asset('bundles/samplesindex/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/samplesindex/vendor/bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/samplesindex/vendor/bootstrap/css/docs.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/samplesindex/vendor/bootstrap/js/google-code-prettify/prettify.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/samplesindex/vendor/jquery-ui/themes/smoothness/jquery-ui-1.9.0.custom.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/samplesindex/vendor/custom/css/styles.css') }}" rel="stylesheet">
+
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="{{ asset('bundles/samplesindex/vendor/custom/ico/favicon.png') }}">
+
+      {% block stylesheets %}{% endblock %}
+
+      {% endblock %}  
+    </head>
+
+    <body>
+
+        <!-- Navbar
+        ================================================== -->
+        <div id="nav-bar" class="navbar navbar-inverse navbar-fixed-top">
+            <a class="brand" href="/" style="float:left;">{% block home_title %}Symfony 2{% endblock %}</a>
+            <div class="navbar-inner">
+                <div class="nav-collapse collapse pull-right">
+                    {% block user_bar %} 
+                         {{ include('SamplesProgramadoresBundle:blocks:user-menu.html.twig') }} 
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Header
+        ================================================== -->
+        <header id="header" class="jumbotron subhead" style="padding:15px;">
+            <div class="container">
+            {% block banner %}
+                <div class="row">
+                 {% block logo %}
+                    <a href="/"><h2 class="span4"><img src="{{ asset('apple-touch-icon.png') }}" width="55px"> Curso Symfony 2</h2></a>
+                 {% endblock %}
+                 {#  
+                    {% if code is defined %}
+                    <p class="span2 pull-right" style="margin-top:22px;">
+                        <a href="#show-code-behind-modal" role="button" class="pull-right btn-small" data-toggle="modal">
+                            <i class="icon-search"></i> Show code
+                        </a>
+                    </p>
+                   {% endif %}
+                 #}
+                 {% block header_menu %}
+                      {{ include('SamplesProgramadoresBundle:blocks:header-menu.html.twig') }}
+                 {% endblock %}
+                </div>
+             {% endblock %}
+            </div>
+        </header>
+
+        <!-- System flash messages
+        ================================================== -->
+
+        <div id="flash-messages" class="container">
+            <div class="row">
+            {% block flash_messages %}
+                {% for notice_level in ['success','error','info', 'warning'] %}{% for flash in app.session.flashbag.get(notice_level) %}
+                <div class="alert alert-{{ notice_level }}" style="margin-top: 15px;line-height: 15px;">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>{{ notice_level | upper() }}: </strong> {{ flash|trans([], 'UODemoBundle') }}
+                </div>	
+                {% endfor %}{% endfor %}
+            {% endblock %}
+            </div>
+        </div>
+
+        <!-- Main Content
+        ================================================== -->
+
+        <div id="main-content" class="container" style="margin: 15px auto;">
+            <div class="row">
+            {% block body %}
+                <div class="span3">
+                    <!-- Left Content
+                    ================================================== -->
+                 {% block left %}
+                      {{ include('SamplesProgramadoresBundle:blocks:left-menu.html.twig') }}
+                 {% endblock %}
+                </div>
+                <div class="span9">
+                    <!-- Right Content
+                    ================================================== -->
+                 {% block content%} {% endblock %}
+                </div>
+            {% endblock %}
+            </div>
+        </div>
+
+        <!-- Footer
+         ================================================== -->
+        <footer id="footer" class="footer" style="background: none repeat scroll 0 0 #323843;">
+            <div class="container">
+            {% block footer %}
+                <div style="height: 75px;">
+                    <div class="">
+                        <p style="color: #ffffff">Curso Symfony 2 &nbsp;&copy;&nbsp;2013</p>
+                    </div>
+                </div>
+            {% endblock %}
+            </div>
+        </footer>
+
+        <!-- Ajax Loader container
+         ================================================== -->
+
+        <div id="ajax-waiting-loader" class="modal-backdrop fade in hide"> 
+            <div style="width:220px; height: 70px; margin-top: 275px; margin-left: auto; margin-right:auto">
+                <div class="pull-left"><img src="{{ asset('bundles/samplesindex/vendor/custom/img/ajax-wait.gif')}}"></div>
+                <div class="pull-left"><p style="color: #ffffff;"><strong>&nbsp;Espere, por favor....</strong></p></div>
+            </div>
+        </div>
+    {#
+    {% if code is defined %}
+        <!-- Modal -->
+        <div id="show-code-behind-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="show-code-behind-modal-label" aria-hidden="true" style="width: 100%; margin-left: -50%;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="show-code-behind-modal-label">Code behind this page</h3>
+            </div>
+            <div class="modal-body">
+                <div class="symfony-content">{{code|raw}}</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+    {% endif %}
+    #}
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+    {% block javascript %}
+
+        <script src="{{ asset('bundles/samplesindex/vendor/jquery/jquery-1.9.1.min.js') }}"></script>
+        <script src="{{ asset('bundles/samplesindex/vendor/jquery-ui/jquery-ui-1.10.2.min.js') }}"></script>
+        <script src="{{ asset('bundles/samplesindex/vendor/jquery-ui/i18n/jquery-ui-i18n.min.js') }}"></script>
+        <script src="{{ asset('bundles/samplesindex/vendor/jquery-ui/i18n/jquery.ui.datepicker-es.min.js') }}"></script>
+
+        <script src="{{ asset('bundles/samplesindex/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/samplesindex/vendor/bootstrap/js/holder/holder.js') }}"></script>
+        <script src="{{ asset('bundles/samplesindex/vendor/bootstrap/js/google-code-prettify/prettify.js') }}"></script>
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+		
+    {% block javascripts %}{% endblock %}
+    {% endblock %}
+    </body>
+</html>

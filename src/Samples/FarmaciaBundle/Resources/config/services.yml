@@ -1,0 +1,55 @@
+services:
+    
+    samples.farmacia.admin.classificacao:
+        class: Samples\FarmaciaBundle\Admin\ClassificacaoAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\Classificacao, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Classificacões}
+
+    samples.farmacia.admin.dispositivo_medico:
+        class: Samples\FarmaciaBundle\Admin\DispositivoMedicoAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\DispositivoMedico, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Dispositivos Médicos}
+
+    samples.farmacia.admin.forma:
+        class: Samples\FarmaciaBundle\Admin\FormaAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\Forma, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Apresentações}
+
+    samples.farmacia.admin.funcionario:
+        class: Samples\FarmaciaBundle\Admin\FuncionarioAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\Funcionario, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Funcionários}
+
+    samples.farmacia.admin.medicamento:
+        class: Samples\FarmaciaBundle\Admin\MedicamentoAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\Medicamento, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Medicamentos}
+
+    samples.farmacia.admin.movimento:
+        class: Samples\FarmaciaBundle\Admin\MovimentoAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\Movimento, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Movimentos de Stock}
+
+    samples.farmacia.admin.principio_activo:
+        class: Samples\FarmaciaBundle\Admin\PrincipioActivoAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\PrincipioActivo, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Principios Activos}
+
+    samples.farmacia.admin.tipo_movimento:
+        class: Samples\FarmaciaBundle\Admin\TipoMovimentoAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\TipoMovimento, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Tipos de Movimentos}
+
+    samples.farmacia.admin.unidade_medida:
+        class: Samples\FarmaciaBundle\Admin\UnidadeMedidaAdmin
+        arguments: [~, Samples\FarmaciaBundle\Entity\UnidadeMedida, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Unidades de Medidas}

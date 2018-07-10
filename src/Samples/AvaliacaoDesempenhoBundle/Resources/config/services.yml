@@ -1,0 +1,91 @@
+services:
+
+    samples.avaliacaodesempenho.admin.ano_lectivo:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\AnoLectivoAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\AnoLectivo, SamplesAvaliacaoDesempenhoBundle:AnoLectivoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _____, label: Anos Lectivos}
+
+    samples.avaliacaodesempenho.admin.categoria_profissional:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\CategoriaProfissionalAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\CategoriaProfissional, SamplesAvaliacaoDesempenhoBundle:CategoriaProfissionalAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _____, label: Categorias Profissionais}
+
+    samples.avaliacaodesempenho.admin.departamento:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\DepartamentoAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\Departamento, SamplesAvaliacaoDesempenhoBundle:DepartamentoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _____, label: Departamentos}
+
+    samples.avaliacaodesempenho.admin.disciplina:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\DisciplinaAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\Disciplina, SamplesAvaliacaoDesempenhoBundle:DisciplinaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _____, label: Disciplinas}
+
+    samples.avaliacaodesempenho.admin.grau_academico:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\GrauAcademicoAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\GrauAcademico, SamplesAvaliacaoDesempenhoBundle:GrauAcademicoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _____, label: Graus Académicos}
+
+    samples.avaliacaodesempenho.admin.tipo_actividade:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\TipoActividadeAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\TipoActividade, SamplesAvaliacaoDesempenhoBundle:TipoActividadeAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _____, label: Tipos de Actividades}
+
+    samples.avaliacaodesempenho.admin.tipo_decisao:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\TipoDecisaoAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\TipoDecisao, SamplesAvaliacaoDesempenhoBundle:TipoDecisaoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _____, label: Tipos de Decisões}
+
+    samples.avaliacaodesempenho.admin.tipo_publicacao:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\TipoProducaoCientificaAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\TipoProducaoCientifica, SamplesAvaliacaoDesempenhoBundle:TipoProducaoCientificaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: _____, label: Tipos de Produções Científicas}
+
+    samples.avaliacaodesempenho.admin.pessoal:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\PessoalAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\Pessoal, SamplesAvaliacaoDesempenhoBundle:PessoalAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ____, label: Pessoal Docente}
+
+    samples.avaliacaodesempenho.admin.avaliacao_desempenho:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\AvaliacaoDesempenhoAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\AvaliacaoDesempenho, SamplesAvaliacaoDesempenhoBundle:AvaliacaoDesempenhoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: __, label: Avaliações de Desempenho}
+
+    samples.avaliacaodesempenho.admin.categoria_profissional_obtida:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\CategoriaProfissionalObtidaAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\CategoriaProfissionalObtida, SamplesAvaliacaoDesempenhoBundle:CategoriaProfissionalObtidaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: __, label: CategoriaProfissionalObtida}
+
+    samples.avaliacaodesempenho.admin.grau_academico_obtido:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\GrauAcademicoObtidoAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\GrauAcademicoObtido, SamplesAvaliacaoDesempenhoBundle:GrauAcademicoObtidoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: __, label: GrauAcademicoObtido}
+
+    samples.avaliacaodesempenho.admin.participacao_actividade:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\ParticipacaoActividadeAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\ParticipacaoActividade, SamplesAvaliacaoDesempenhoBundle:ParticipacaoActividadeAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: __, label: ParticipacaoActividade}
+
+    samples.avaliacaodesempenho.admin.participacao_producao_cientifica:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\ParticipacaoProducaoCientificaAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\ParticipacaoProducaoCientifica, SamplesAvaliacaoDesempenhoBundle:ParticipacaoProducaoCientificaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: __, label: ParticipacaoProducaoCientifica}
+
+    samples.avaliacaodesempenho.admin.disciplina_lecionada:
+        class: Samples\AvaliacaoDesempenhoBundle\Admin\DisciplinaLecionadaAdmin
+        arguments: [~, Samples\AvaliacaoDesempenhoBundle\Entity\DisciplinaLecionada, SamplesAvaliacaoDesempenhoBundle:DisciplinaLecionadaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: __, label: DisciplinaLecionada}

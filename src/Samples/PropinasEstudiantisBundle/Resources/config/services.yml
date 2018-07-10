@@ -1,0 +1,43 @@
+services:
+    
+    samples.propinas.admin.ano_lectivo:
+        class: Samples\PropinasEstudiantisBundle\Admin\AnoLectivoAdmin
+        arguments: [~, Samples\PropinasEstudiantisBundle\Entity\AnoLectivo, SamplesPropinasEstudiantisBundle:AnoLectivoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ___, label: Anos Lectivos}
+
+    samples.propinas.admin.classe:
+        class: Samples\PropinasEstudiantisBundle\Admin\ClasseAdmin
+        arguments: [~, Samples\PropinasEstudiantisBundle\Entity\Classe, SamplesPropinasEstudiantisBundle:ClasseAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ___, label: Classes}
+
+    samples.propinas.admin.curso:
+        class: Samples\PropinasEstudiantisBundle\Admin\CursoAdmin
+        arguments: [~, Samples\PropinasEstudiantisBundle\Entity\Curso, SamplesPropinasEstudiantisBundle:CursoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ___, label: Cursos}
+
+    samples.propinas.admin.estudante:
+        class: Samples\PropinasEstudiantisBundle\Admin\EstudanteAdmin
+        arguments: [~, Samples\PropinasEstudiantisBundle\Entity\Estudante, SamplesPropinasEstudiantisBundle:EstudanteAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ___, label: Estudantes}
+
+    samples.propinas.admin.municipio:
+        class: Samples\PropinasEstudiantisBundle\Admin\MunicipioAdmin
+        arguments: [~, Samples\PropinasEstudiantisBundle\Entity\Municipio, SamplesPropinasEstudiantisBundle:MunicipioAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ___, label: Municipios}
+
+    samples.propinas.admin.provincia:
+        class: Samples\PropinasEstudiantisBundle\Admin\ProvinciaAdmin
+        arguments: [~, Samples\PropinasEstudiantisBundle\Entity\Provincia, SamplesPropinasEstudiantisBundle:ProvinciaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ___, label: Provincias}
+
+    samples.propinas.admin.turma:
+        class: Samples\PropinasEstudiantisBundle\Admin\TurmaAdmin
+        arguments: [~, Samples\PropinasEstudiantisBundle\Entity\Turma, SamplesPropinasEstudiantisBundle:TurmaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: ___, label: Turmas}

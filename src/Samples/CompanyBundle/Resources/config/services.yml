@@ -1,0 +1,30 @@
+services:
+
+#    app.services.example:
+#        class: Samples\CompanyBundle\Services\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+#        tags:
+#            - { name: some_tag_name, option1: value, option2: value }
+#        calls:
+#            - [ setAnotherService,[@service_id]]
+#            - [ setAnotherStringValue,[plain_value]]
+#            - [ setAnotherParameterValue,[%parameter%]]
+
+# Services from Bundle
+#
+    samples.company.manager.company:
+        class: Samples\CompanyBundle\Manager\CompanyManager
+        #arguments: [@service_id, "plain_value", %parameter%]
+        #tags:
+        #    - { name: some_tag_name, option1: value, option2: value }
+        calls:
+            - [ setEntityManager,[@doctrine.orm.entity_manager]]
+
+    samples.company.manager.worker:
+        class: Samples\CompanyBundle\Manager\WorkerManager
+        #arguments: [@service_id, "plain_value", %parameter%]
+        #tags:
+        #    - { name: some_tag_name, option1: value, option2: value }
+        calls:
+            - [ setEntityManager,[@doctrine.orm.entity_manager]]
+            - [ setCompanyManager,[@samples.company.manager.company]]

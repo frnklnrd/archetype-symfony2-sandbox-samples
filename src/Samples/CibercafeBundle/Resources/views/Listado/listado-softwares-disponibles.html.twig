@@ -1,0 +1,37 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Softwares Disponibles{% endblock %}
+
+{% block content_center %}
+<div class="nav navbar navbar-inner">
+    <h3>
+       Softwares Disponibles  
+    </h3>
+</div>
+<table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr style="background-color: #F5F5F5;">
+                <th>#</th>
+                <th class="">Programa</th>
+            </tr>
+        </thead>
+        <tbody>
+	 {% for objeto in listado %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <span>{{ objeto.nombre}}</span>
+                    </td>
+                </tr>
+	{% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+
+{% block add_javascript %}
+ <script>
+     //Indica al menu que se ponga activo(azul)
+     $('#left-menu-8').addClass('active');
+</script>     
+{% endblock %}

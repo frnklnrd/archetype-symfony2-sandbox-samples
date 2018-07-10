@@ -1,0 +1,65 @@
+<?php
+
+namespace Samples\AvaliacaoDesempenhoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Decisao
+ *
+ * @ORM\Table(name="samples_avaliacao_desempenho__tipodecisao")
+ * @ORM\Entity
+ */
+class TipoDecisao {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="decisao", type="string", length=255)
+     */
+    private $decisao;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set decisao
+     *
+     * @param string $decisao
+     * @return Decisao
+     */
+    public function setDecisao($decisao) {
+        $this->decisao = $decisao;
+
+        return $this;
+    }
+
+    /**
+     * Get decisao
+     *
+     * @return string 
+     */
+    public function getDecisao() {
+        return $this->decisao;
+    }
+
+    public function __toString() {
+        return $this->id ? "" . $this->decisao: "";
+    }
+
+}

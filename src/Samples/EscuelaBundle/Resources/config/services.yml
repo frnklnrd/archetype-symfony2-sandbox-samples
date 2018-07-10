@@ -1,0 +1,59 @@
+services:
+#    samples_escuela.example:
+#        class: Samples\EscuelaBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+   samples.escuela.admin.asignatura:
+       class: Samples\EscuelaBundle\Admin\AsignaturaAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Asignaturas" }
+       arguments:
+           - ~
+           - Samples\EscuelaBundle\Entity\Asignatura
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesEscuelaBundle]]
+
+   samples.escuela.admin.provincia:
+       class: Samples\EscuelaBundle\Admin\ProvinciaAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ___, label: "Provincias" }
+       arguments:
+           - ~
+           - Samples\EscuelaBundle\Entity\Provincia
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesEscuelaBundle]]
+
+   samples.escuela.admin.escuela:
+       class: Samples\EscuelaBundle\Admin\EscuelaAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ___, label: "Escuelas" }
+       arguments:
+           - ~
+           - Samples\EscuelaBundle\Entity\Escuela
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesEscuelaBundle]]
+
+   samples.escuela.admin.persona:
+       class: Samples\EscuelaBundle\Admin\PersonaAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ___, label: "Estudiantes y Profesores" }
+       arguments:
+           - ~
+           - Samples\EscuelaBundle\Entity\Persona
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesEscuelaBundle]]
+           - [ setSubClasses,[{ 'Estudiante':'Samples\EscuelaBundle\Entity\Estudiante','Profesor':Samples\EscuelaBundle\Entity\Profesor}]]
+
+   samples.escuela.admin.notas:
+       class: Samples\EscuelaBundle\Admin\NotaAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: ____, label: "Notas" }
+       arguments:
+           - ~
+           - Samples\EscuelaBundle\Entity\CursoRecibido
+           - SonataAdminBundle:CRUD
+       calls:
+           - [ setTranslationDomain, [SamplesEscuelaBundle]]

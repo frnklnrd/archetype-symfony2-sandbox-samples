@@ -1,0 +1,37 @@
+<div ng-controller="companiesCRUDCtrl as $ctrl">
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h3 class="navbar-text col-lg-11">Companies List</h3>
+            </div>
+        </div>
+    </nav>
+
+    <table-paginated route="samples_company_api_companyapi_paginated" 
+                     page="1" limit="10" 
+                     fields="{% raw %}{{[{name: 'name', title: 'Name'}, {name: 'country', title: 'Country'}, {name: 'website', title: 'Website'}]}}{% endraw %}"
+                     actions="{% raw %}{{[{name: 'show', title: 'Show', icon: 'fa fa-eye'}, {name: 'edit', title: 'Edit', icon: 'fa fa-pencil'}, {name: 'delete', title: 'Delete', icon: 'fa fa-trash'}]}}{% endraw %}" 
+                     actionshandler="$ctrl.execute">
+    </table-paginated>
+
+    <div id="{% raw %}{{$ctrl.modal.id}}{% endraw %}" style="display: none;" class="modal fade modal-overflow" tabindex="-1" role="dialog" aria-labelledby="{% raw %}{{$ctrl.modal.id}}{% endraw %}-title" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="z-index: 1500">
+            <div class="modal-content" style="border-radius: 0px; height: 100%; padding: 0px;" data-spy="scroll" data-target="#{% raw %}{{$ctrl.modal.id}}{% endraw %}-body">
+                <div id="{% raw %}{{$ctrl.modal.id}}{% endraw %}-header" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="{% raw %}{{$ctrl.modal.id}}{% endraw %}-title">{% raw %}{{$ctrl.modal.title}}{% endraw %}</h4>
+                </div>
+                <div id="{% raw %}{{$ctrl.modal.id}}{% endraw %}-body" class="modal-body" style="min-height: 380px; max-height: 450px; overflow: auto !important;">
+
+                </div>
+                <div id="{% raw %}{{$ctrl.modal.id}}{% endraw %}-footer" class="modal-footer">
+                    <span class="hide error-message"><b class="error danger" style="color:red;">ERROR!!!. </b></span>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button type="submit" class="btn btn-primary" ng-hide="$ctrl.modal.hidesubmitbutton" ng-click="$ctrl.submitForm()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

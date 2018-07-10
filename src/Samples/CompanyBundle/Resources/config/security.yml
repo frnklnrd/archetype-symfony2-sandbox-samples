@@ -1,0 +1,40 @@
+# related to app/config/security.yml
+
+security:
+    role_hierarchy:
+
+        ROLE_API_COMPANY_ADMIN:
+            - ROLE_API_COMPANY_LIST
+            - ROLE_API_COMPANY_GET
+            - ROLE_API_COMPANY_POST
+            - ROLE_API_COMPANY_PUT
+            - ROLE_API_COMPANY_PATCH
+            - ROLE_API_COMPANY_DELETE
+            - ROLE_API_COMPANY_COUNT
+            - ROLE_API_COMPANY_PAGINATED
+            - ROLE_API_COMPANY_TEMPLATES
+            - ROLE_API_COMPANY_WORKER_LIST
+            - ROLE_API_COMPANY_WORKER_GET
+            - ROLE_API_COMPANY_WORKER_UNLINK
+
+        ROLE_API_WORKER_ADMIN:
+            - ROLE_API_WORKER_LIST
+            - ROLE_API_WORKER_GET
+            - ROLE_API_WORKER_POST
+            - ROLE_API_WORKER_PUT
+            - ROLE_API_WORKER_PATCH
+            - ROLE_API_WORKER_DELETE
+            - ROLE_API_WORKER_COUNT
+            - ROLE_API_WORKER_PAGINATED
+            - ROLE_API_WORKER_TEMPLATES
+
+        # sonata generated roles
+
+#        ROLE_APP_ADMIN_ENTITY:
+#
+#            - ROLE_APP_ADMIN_ENTITY_LIST
+#            - ROLE_APP_ADMIN_ENTITY_VIEW
+#            - ROLE_APP_ADMIN_ENTITY_CREATE
+#            - ROLE_APP_ADMIN_ENTITY_EDIT
+#            - ROLE_APP_ADMIN_ENTITY_DELETE
+#            - ROLE_APP_ADMIN_ENTITY_EXPORT

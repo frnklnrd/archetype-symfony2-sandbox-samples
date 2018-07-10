@@ -1,0 +1,59 @@
+{% extends "SamplesCibercafeBundle::layout.html.twig" %}
+
+{% block title %}Datos del Usuario{% endblock %}
+
+{% block content_center %}
+<div class="nav navbar navbar-inner">
+    <h3>
+        Datos del Usuario
+    </h3>
+</div>
+<table class="table table-bordered table-striped table-hover">
+    <tbody>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Apellidos</th>
+            <td>{{ entity.apellidos }}</td>
+        </tr>
+        <tr>
+            <th>Num_pc_asignada</th>
+            <td>{{ entity.numPCasignada }}</td>
+        </tr>
+        <tr>
+            <th>Num_tarjeta_credito</th>
+            <td>{{ entity.numtarjetacredito }}</td>
+        </tr>
+        <tr>
+            <th>Carnet_identidad</th>
+            <td>{{ entity.carnetidentidad }}</td>
+        </tr>
+{% if tipo_usuario == "asociado"%}         
+        <tr>
+            <th>Cant_annos</th>
+            <td>{{ entity.cantannos }}</td>
+        </tr>
+        <tr>
+            <th>Categoria</th>
+            <td>{{ entity.categoria }}</td>
+        </tr>        
+{% endif %}        
+    </tbody>
+</table>
+
+<div class="span8 pull-right">
+    <a href="{{ path('crud_usuario_asociado_eventual') }}" class="span2">
+        Volver al listado
+    </a>
+    <a href="{{ path('crud_usuario_asociado_eventual_edit', { 'id': entity.id }) }}" class="span2">
+        Editar
+    </a>
+    <form action="{{ path('crud_usuario_asociado_eventual_delete', { 'id': entity.id }) }}" method="post" class="span2">
+        <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+        <button type="submit">Eliminar</button>
+    </form>
+</ul>
+{% endblock %}

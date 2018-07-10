@@ -1,0 +1,19 @@
+sonata_admin:
+    dashboard:
+        groups:
+            samples_stock_viveres:
+                label: Stock de Viveres
+                label_catalogue: SamplesStockViveresBundle
+                icon: '<i class="fa fa-truck"></i>'
+                items:
+                    - samples.stockviveres.admin.funcionario
+                    - samples.stockviveres.admin.movimento
+                    - samples.stockviveres.admin.produto
+                    - samples.stockviveres.admin.tipo_produto
+                    - samples.stockviveres.admin.tipo_movimento
+                    - samples.stockviveres.admin.classe
+                    - samples.stockviveres.admin.classificacao
+                    - samples.stockviveres.admin.grupo
+                    - samples.stockviveres.admin.tipo_embalagem
+                    - samples.stockviveres.admin.unidade_medida
+
